@@ -39,7 +39,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="LocationOfClient">
           <Key>
@@ -564,7 +564,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Location" FromRole="Location" ToRole="Order" />
           <NavigationProperty Name="Order1" Relationship="MsLogisticsBaseModel.FK_Order_Location1" FromRole="Location" ToRole="Order" />
           <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.LocationOfClient" FromRole="Location" ToRole="Client" />
@@ -834,7 +834,7 @@
           <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="*" />
           <End Type="MsLogisticsBaseModel.Rule" Role="Rule" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

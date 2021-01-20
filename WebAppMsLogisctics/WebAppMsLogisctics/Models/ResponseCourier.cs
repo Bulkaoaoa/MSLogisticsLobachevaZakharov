@@ -12,7 +12,9 @@ namespace WebAppMsLogisctics.Models
         {
             if (IsForSchedule == false)
             {
-                //TODO: Ну потом что нибудь сделаем, да?
+                Id = courier.Id;
+                IsFree = courier.IsFree;
+                CourierName = new ResponseUser(courier.User, true).FirstName;
             }
             else
             {
@@ -25,5 +27,6 @@ namespace WebAppMsLogisctics.Models
         public bool IsFree { get; set; }
         public Nullable<int> ScheduleId { get; set; }
         public ResponseSchedule Schedule { get; set; }
+        public string CourierName { get; set; }
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entites\Client.cs">
@@ -222,7 +223,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponceLocation.cs" />
+    <Compile Include="Models\ResponseClient.cs" />
     <Compile Include="Models\ResponseCourier.cs" />
+    <Compile Include="Models\ResponseOrder.cs" />
     <Compile Include="Models\ResponseSchedule.cs" />
     <Compile Include="Models\ResponseUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
