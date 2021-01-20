@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebAppMsLogisctics.Entites;
+using WebAppMsLogisctics.Models;
 
 namespace WebAppMsLogisctics.Controllers
 {
@@ -34,11 +35,62 @@ namespace WebAppMsLogisctics.Controllers
 
             return Ok(order);
         }
+        // GET: get Orders by CLients id (For Client Look)
+        [ResponseType(typeof(List<ResponseOrder>)), Route("api/OrdersByUser")]
+        public IHttpActionResult GetOrdersByUser(int clientId)
+        {
+            List<Order> currOrderList = db.Order.ToList().Where(p => p.ClientId == clientId).ToList();
+            //Тут можно сделать проверку на нулевость листа и отправлять 404, но в общем если он будет пустую возвращать, то без разницы
+            //Если хочешь, можешь прикрутить. Там обычный if
+            return Ok(currOrderList.ConvertAll(p=> new ResponseOrder(p,true)).ToList());
+        }
+
+        // GET: get Orders by Courier id (For Courier Look)
+        [ResponseType(typeof(List<ResponseOrder>)), Route("api/OrdersWithoutCourier")]
+        public IHttpActionResult GetOrdersWithoutCourier()
+        {
+            List<Order> currOrderList = db.Order.ToList().Where(p => p.CourierId == null).ToList();
+            //Тут можно сделать проверку на нулевость листа и отправлять 404, но в общем если он будет пустую возвращать, то без разницы
+            //Если хочешь, можешь прикрутить. Там обычный if
+            return Ok(currOrderList.ConvertAll(p => new ResponseOrder(p, false)).ToList());
+        }
 
         // PUT: api/Orders/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOrder(int id, Order order)
         {
+            if (order.Comment.Length > 1000)
+                ModelState.AddModelError("Comment Lenght", "Comment Lenght cant be more than 1000 symbols");
+            if (order.Code.Length > 100)
+                ModelState.AddModelError("Code Lenght", "Code lenght cant be more than 100 symbols");
+            if (order.Code.Length == 0)
+                ModelState.AddModelError("Code Lenght", "Code cant be null");
+            if (db.OrderStatus.ToList().Where(p => p.Id == order.StatusId).FirstOrDefault() == null)
+                ModelState.AddModelError("OrderStatus", "We dont have this order status");
+            if (db.Client.ToList().Where(p => p.Id == order.ClientId).FirstOrDefault() == null)
+                ModelState.AddModelError("Client id", "We dont have this Client");
+            if (order.ClientId == 0)
+                ModelState.AddModelError("Client id", "We need client id");
+            if (db.Location.ToList().Where(p => p.Id == order.StartLocation).FirstOrDefault() == null)
+                ModelState.AddModelError("Start location id", "We dont have this location");
+            if (order.StartLocation == 0)
+                ModelState.AddModelError("Start location id", "We need Start loaction id");
+            if (db.Location.ToList().Where(p => p.Id == order.EndLocation).FirstOrDefault() == null)
+                ModelState.AddModelError("End location id", "We dont have this location");
+            if (order.EndLocation == 0)
+                ModelState.AddModelError("End location id", "We need end location id");
+            if (db.Manager.ToList().Where(p => p.Id == order.ManagerId).FirstOrDefault() == null)
+                ModelState.AddModelError("Manager id", "We dont have this manager");
+            if (order.ManagerId == 0)
+                ModelState.AddModelError("Manager id", "We need manager id");
+            if (db.OrderType.ToList().Where(p => p.Id == order.OrderTypeId).FirstOrDefault() == null)
+                ModelState.AddModelError("Order type id", "We dont have this order type");
+            if (order.CourierId != 0 && db.Courier.ToList().Where(p => p.Id == order.CourierId).FirstOrDefault() == null)
+                ModelState.AddModelError("Courier id", "We dont have this Courier");
+            if (order.CourierRate > 5 || order.CourierRate < 0)
+                ModelState.AddModelError("Courier Rate", "Invalid range for rate (Courier)");
+            if (order.ClientRate > 5 || order.ClientRate < 0)
+                ModelState.AddModelError("Client Rate", "Invalid range for rate (Client)");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +126,32 @@ namespace WebAppMsLogisctics.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
+            if (order.Comment.Length > 1000)
+                ModelState.AddModelError("Comment Lenght", "Comment Lenght cant be more than 1000 symbols");
+            if (order.Code.Length > 100)
+                ModelState.AddModelError("Code Lenght", "Code lenght cant be more than 100 symbols");
+            if (order.Code.Length == 0)
+                ModelState.AddModelError("Code Lenght", "Code cant be null");
+            if (db.OrderStatus.ToList().Where(p=>p.Id == order.StatusId).FirstOrDefault() == null)
+                ModelState.AddModelError("OrderStatus", "We dont have this order status");
+            if (db.Client.ToList().Where(p => p.Id == order.ClientId).FirstOrDefault() == null)
+                ModelState.AddModelError("Client id", "We dont have this Client");
+            if (order.ClientId == 0)
+                ModelState.AddModelError("Client id", "We need client id");
+            if (db.Location.ToList().Where(p => p.Id == order.StartLocation).FirstOrDefault() == null)
+                ModelState.AddModelError("Start location id", "We dont have this location");
+            if (order.StartLocation == 0)
+                ModelState.AddModelError("Start location id", "We need Start loaction id");
+            if (db.Location.ToList().Where(p => p.Id == order.EndLocation).FirstOrDefault() == null)
+                ModelState.AddModelError("End location id", "We dont have this location");
+            if (order.EndLocation == 0)
+                ModelState.AddModelError("End location id", "We need end location id");
+            if (db.Manager.ToList().Where(p => p.Id == order.ManagerId).FirstOrDefault() == null)
+                ModelState.AddModelError("Manager id", "We dont have this manager");
+            if (order.ManagerId == 0)
+                ModelState.AddModelError("Manager id", "We need manager id");
+            if (db.OrderType.ToList().Where(p => p.Id == order.OrderTypeId).FirstOrDefault() == null)
+                ModelState.AddModelError("Order type id", "We dont have this order type");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

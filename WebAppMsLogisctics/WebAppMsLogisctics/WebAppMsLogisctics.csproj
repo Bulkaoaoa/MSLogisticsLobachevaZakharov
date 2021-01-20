@@ -227,6 +227,7 @@
     <Compile Include="Models\ResponseClient.cs" />
     <Compile Include="Models\ResponseCourier.cs" />
     <Compile Include="Models\ResponseOrder.cs" />
+    <Compile Include="Models\ResponseRule.cs" />
     <Compile Include="Models\ResponseSchedule.cs" />
     <Compile Include="Models\ResponseUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

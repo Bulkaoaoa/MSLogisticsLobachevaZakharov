@@ -16,7 +16,7 @@ namespace WebAppMsLogisctics.Models
                 Comment = order.Comment;
                 Code = order.Code;
                 CourierName = new ResponseCourier(order.Courier, false).CourierName;
-                // TODO: Надо сделать средний подсчет рейтинга, знаю как делать, но чет хз
+                // TODO:  Надо сделать средний подсчет рейтинга, знаю как делать, но чет хз
                 //Вот эти два молодых могут ломаться 
                 StatusName = order.OrderStatus.Name;
                 OrderPrice = order.OrderType.Price;
@@ -27,10 +27,11 @@ namespace WebAppMsLogisctics.Models
                 Comment = order.Comment;
                 Code = order.Code;
                 ClientName = new ResponseClient(order.Client).FirstName;
-                StartLocationName = new ResponceLocation(order.Location).Location;
-                EndLocationName = new ResponceLocation(order.Location1).Location;
+                StartLocationName = new ResponceLocation(order.Location, true).LocationName;
+                EndLocationName = new ResponceLocation(order.Location1, true).LocationName;
                 OrderPrice = order.OrderType.Price;
-
+                RulesOfStartLocation = new ResponceLocation(order.Location, true).ListOfRules;
+                RulesOfEndLocation = new ResponceLocation(order.Location1, true).ListOfRules;
             }
         }
         public int Id { get; set; }
@@ -43,6 +44,8 @@ namespace WebAppMsLogisctics.Models
         public string StartLocationName { get; set; }
         public int EndLocation { get; set; }
         public string EndLocationName { get; set; }
+        public List<ResponseRule> RulesOfStartLocation { get; set; }
+        public List<ResponseRule> RulesOfEndLocation { get; set; }
 
         public Nullable<int> CourierId { get; set; }
         public string CourierName { get; set; }
