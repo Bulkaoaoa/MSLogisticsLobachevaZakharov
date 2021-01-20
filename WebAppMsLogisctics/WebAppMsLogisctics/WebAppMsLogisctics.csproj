@@ -45,10 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -156,10 +163,68 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Entites\Client.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Courier.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\ExtraFile.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Location.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Manager.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\ModelMsLogisctics.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMsLogisctics.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\ModelMsLogisctics.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\ModelMsLogisctics.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Order.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\OrderStatus.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\OrderType.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Role.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Rule.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\Schedule.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\sysdiagrams.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\User.cs">
+      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseCourier.cs" />
+    <Compile Include="Models\ResponseSchedule.cs" />
+    <Compile Include="Models\ResponseUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +233,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Entites\ModelMsLogisctics.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelMsLogisctics.Context.cs</LastGenOutput>
+      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entites\ModelMsLogisctics.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+      <LastGenOutput>ModelMsLogisctics.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -192,6 +267,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Entites\ModelMsLogisctics.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelMsLogisctics.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entites\ModelMsLogisctics.edmx.diagram">
+      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -215,7 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -245,6 +326,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a7eb4c3e76eb4e81a85566e7fafd56aa" Name="Diagram1">
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Client" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Courier" Width="1.5" PointX="3.25" PointY="3.875" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.ExtraFile" Width="1.5" PointX="8.25" PointY="19.875" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Location" Width="1.5" PointX="7.5" PointY="16.625" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Manager" Width="1.5" PointX="8.875" PointY="5.25" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Order" Width="1.5" PointX="10.5" PointY="9.875" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.OrderStatus" Width="1.5" PointX="8.25" PointY="10" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.OrderType" Width="1.5" PointX="8.25" PointY="12.375" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Role" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Rule" Width="1.5" PointX="9.75" PointY="16.875" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.Schedule" Width="1.5" PointX="1" PointY="3.875" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MsLogisticsBaseModel.User" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Client_User" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_Client" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Courier_Schedule" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Courier_User" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_Courier" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_Location" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_Location1" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Manager_User" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_Manager" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_OrderStatus" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_Order_OrderType" />
+        <AssociationConnector Association="MsLogisticsBaseModel.FK_User_Role" />
+        <AssociationConnector Association="MsLogisticsBaseModel.ExtraFileOrder" />
+        <AssociationConnector Association="MsLogisticsBaseModel.LocationOfClient" />
+        <AssociationConnector Association="MsLogisticsBaseModel.RuleOfLocation" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
