@@ -17,7 +17,6 @@ namespace WebAppMsLogisctics.Models
                 LocationName = location.Address;
                 ListOfRules = location.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
             }
-            //TODO Потом надо будет прикрутить правила, возможно будет удобнее 
         }
 
         public List<ResponseRule> ListOfRules { get; set; }
