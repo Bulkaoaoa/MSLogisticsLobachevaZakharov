@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mob.MainPage" Title="Oleg, hi">
+
+    <StackLayout>
+        <Button  HeightRequest="50" WidthRequest="200" Text=" hi, im gay"></Button>
+        <DatePicker HeightRequest="50"></DatePicker>
+        <TimePicker HeightRequest="30"></TimePicker>
+        <Editor HeightRequest="50"></Editor>
+        <Entry HeightRequest="50"></Entry>
+        <Switch HeightRequest="30"></Switch>
+    </StackLayout>
+
+</ContentPage>

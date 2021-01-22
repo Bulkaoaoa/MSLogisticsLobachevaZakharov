@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mob.App">
+    <Application.Resources>
+        <!--<SolidColorBrush x:Key="SolidMainYellow" Color="#F5DF4D"></SolidColorBrush>-->
+        <Color x:Key="MainYellow">#F5DF4D</Color>
+        <Color x:Key="MainYellowDark" >#A3921C</Color>
+        <Color x:Key="MainGray" >#939597</Color>
+        <Color x:Key="MainGrayDark">#525252</Color>
+        <Color x:Key="MainGrayDarkest">#282828</Color>
+
+        <Style  TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5" />
+            <!--<Setter Property="Background" Value="#F5DF4D" />-->
+            <Setter Property="BackgroundColor" Value="{StaticResource MainYellow}" />
+            <Setter Property="TextColor" Value="{StaticResource MainGrayDark }" />
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="TextColor" Value="{StaticResource MainGrayDark}" />
+        </Style>
+        <Style TargetType="{x:Type TimePicker}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="TextColor" Value="{StaticResource MainGrayDark}" />
+        </Style>
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource MainGrayDark}" />
+            <Setter Property="TextColor" Value="{StaticResource MainGrayDark}" />
+        </Style>
+        <Style TargetType="{x:Type Entry}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource MainGrayDark}" />
+            <Setter Property="TextColor" Value="{StaticResource MainGrayDark}" />
+        </Style>
+        <Style TargetType="{x:Type Switch}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="OnColor" Value="{StaticResource MainYellow}" />
+            <Setter Property="ThumbColor" Value="{StaticResource MainGrayDark}" />
+        </Style>
+    </Application.Resources>
+</Application>
