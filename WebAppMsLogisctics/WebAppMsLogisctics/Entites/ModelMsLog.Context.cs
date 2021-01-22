@@ -13,10 +13,10 @@ namespace WebAppMsLogisctics.Entites
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MSLogisticsLZEntities : DbContext
+    public partial class EntitiesMsLog : DbContext
     {
-        public MSLogisticsLZEntities()
-            : base("name=MSLogisticsLZEntities")
+        public EntitiesMsLog()
+            : base("name=EntitiesMsLog")
         {
         }
     

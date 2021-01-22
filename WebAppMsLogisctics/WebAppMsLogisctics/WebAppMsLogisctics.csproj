@@ -167,55 +167,55 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entites\Client.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Courier.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\ExtraFile.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Location.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Manager.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMs.Context.cs">
+    <Compile Include="Entites\ModelMsLog.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMs.Context.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMs.cs">
+    <Compile Include="Entites\ModelMsLog.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMs.Designer.cs">
+    <Compile Include="Entites\ModelMsLog.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMs.edmx</DependentUpon>
+      <DependentUpon>ModelMsLog.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entites\Order.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\OrderStatus.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\OrderType.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Role.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Rule.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Schedule.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\User.cs">
-      <DependentUpon>ModelMs.tt</DependentUpon>
+      <DependentUpon>ModelMsLog.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,15 +235,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Entites\ModelMs.Context.tt">
+    <Content Include="Entites\ModelMsLog.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelMs.edmx</DependentUpon>
-      <LastGenOutput>ModelMs.Context.cs</LastGenOutput>
+      <DependentUpon>ModelMsLog.edmx</DependentUpon>
+      <LastGenOutput>ModelMsLog.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entites\ModelMs.tt">
+    <Content Include="Entites\ModelMsLog.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelMs.edmx</DependentUpon>
-      <LastGenOutput>ModelMs.cs</LastGenOutput>
+      <DependentUpon>ModelMsLog.edmx</DependentUpon>
+      <LastGenOutput>ModelMsLog.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -269,12 +269,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Entites\ModelMs.edmx">
+    <EntityDeploy Include="Entites\ModelMsLog.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelMs.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelMsLog.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entites\ModelMs.edmx.diagram">
-      <DependentUpon>ModelMs.edmx</DependentUpon>
+    <Content Include="Entites\ModelMsLog.edmx.diagram">
+      <DependentUpon>ModelMsLog.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

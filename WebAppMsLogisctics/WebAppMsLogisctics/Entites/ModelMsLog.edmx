@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MSLogisticsLZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="gb_ntibaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -386,7 +386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MSLogisticsLZModelStoreContainer">
+        <EntityContainer Name="gb_ntibaseModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courier" EntityType="Self.Courier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExtraFile" EntityType="Self.ExtraFile" Schema="dbo" store:Type="Tables" />
@@ -488,7 +488,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MSLogisticsLZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="gb_ntibaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -790,7 +790,7 @@
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <End Role="Rule" Type="Self.Rule" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MSLogisticsLZEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EntitiesMsLog" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Courier" EntityType="Self.Courier" />
           <EntitySet Name="ExtraFile" EntityType="Self.ExtraFile" />
@@ -873,16 +873,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MSLogisticsLZModelStoreContainer" CdmEntityContainer="MSLogisticsLZEntities">
+        <EntityContainerMapping StorageEntityContainer="gb_ntibaseModelStoreContainer" CdmEntityContainer="EntitiesMsLog">
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Client">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courier">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Courier">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Courier">
               <MappingFragment StoreEntitySet="Courier">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IsFree" ColumnName="IsFree" />
@@ -891,7 +891,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExtraFile">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.ExtraFile">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.ExtraFile">
               <MappingFragment StoreEntitySet="ExtraFile">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FileData" ColumnName="FileData" />
@@ -899,7 +899,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Location">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Location">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Location">
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -907,14 +907,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manager">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Manager">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Manager">
               <MappingFragment StoreEntitySet="Manager">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Order">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
@@ -934,7 +934,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.OrderStatus">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -942,7 +942,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderType">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.OrderType">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.OrderType">
               <MappingFragment StoreEntitySet="OrderType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -951,7 +951,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Role">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -959,7 +959,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rule">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Rule">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Rule">
               <MappingFragment StoreEntitySet="Rule">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -967,7 +967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Schedule">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.Schedule">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Monday" ColumnName="Monday" />
@@ -981,7 +981,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="MSLogisticsLZModel.User">
+            <EntityTypeMapping TypeName="gb_ntibaseModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -995,7 +995,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ExtraFileOrder" TypeName="MSLogisticsLZModel.ExtraFileOrder" StoreEntitySet="ExtraFileOrder">
+          <AssociationSetMapping Name="ExtraFileOrder" TypeName="gb_ntibaseModel.ExtraFileOrder" StoreEntitySet="ExtraFileOrder">
             <EndProperty Name="ExtraFile">
               <ScalarProperty Name="Id" ColumnName="ExtraFIleId" />
             </EndProperty>
@@ -1003,7 +1003,7 @@
               <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="LocationOfClient" TypeName="MSLogisticsLZModel.LocationOfClient" StoreEntitySet="LocationOfClient">
+          <AssociationSetMapping Name="LocationOfClient" TypeName="gb_ntibaseModel.LocationOfClient" StoreEntitySet="LocationOfClient">
             <EndProperty Name="Client">
               <ScalarProperty Name="Id" ColumnName="ClientId" />
             </EndProperty>
@@ -1011,7 +1011,7 @@
               <ScalarProperty Name="Id" ColumnName="LocationId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="RuleOfOrderEnd" TypeName="MSLogisticsLZModel.RuleOfOrderEnd" StoreEntitySet="RuleOfOrderEnd">
+          <AssociationSetMapping Name="RuleOfOrderEnd" TypeName="gb_ntibaseModel.RuleOfOrderEnd" StoreEntitySet="RuleOfOrderEnd">
             <EndProperty Name="Order">
               <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
@@ -1019,7 +1019,7 @@
               <ScalarProperty Name="Id" ColumnName="RuleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="RuleOfOrderStart" TypeName="MSLogisticsLZModel.RuleOfOrderStart" StoreEntitySet="RuleOfOrderStart">
+          <AssociationSetMapping Name="RuleOfOrderStart" TypeName="gb_ntibaseModel.RuleOfOrderStart" StoreEntitySet="RuleOfOrderStart">
             <EndProperty Name="Order">
               <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>

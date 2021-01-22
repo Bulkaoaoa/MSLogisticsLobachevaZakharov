@@ -15,7 +15,7 @@ namespace WebAppMsLogisctics.Controllers
 {
     public class UsersController : ApiController
     {
-        private MSLogisticsLZEntities db = new MSLogisticsLZEntities();
+        private EntitiesMsLog db = new EntitiesMsLog();
 
        
         // GET: api/Users
