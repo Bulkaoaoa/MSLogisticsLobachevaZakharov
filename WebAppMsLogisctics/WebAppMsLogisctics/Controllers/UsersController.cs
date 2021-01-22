@@ -28,13 +28,15 @@ namespace WebAppMsLogisctics.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User user = db.User.Find(id);
+            User user = db.User.ToList().Where(p=>p.Id == id).FirstOrDefault();
             if (user == null)
             {
                 return NotFound();
             }
-
-            return Ok(user);
+            if (user.RoleId == 3) //Курьер
+                return Ok(new ResponseUser(user, true));
+            else
+                return Ok(new ResponseUser(user, false));
         }
 
         // GET: api/Users/5
