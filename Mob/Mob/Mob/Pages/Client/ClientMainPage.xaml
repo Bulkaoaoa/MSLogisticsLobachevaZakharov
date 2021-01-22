@@ -15,7 +15,7 @@
                     <ListView HasUnevenRows="True" x:Name="LvMyOrders">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                
+                                <Grid></Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
