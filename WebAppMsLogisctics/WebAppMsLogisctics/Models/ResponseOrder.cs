@@ -20,6 +20,9 @@ namespace WebAppMsLogisctics.Models
                 //Вот эти два молодых могут ломаться 
                 StatusName = order.OrderStatus.Name;
                 OrderPrice = order.OrderType.Price;
+
+                DateOfDelivery = order.DateOfDelivery;
+                TimeOfDelivery = order.TimeOfDelivery;
             }
             else
             {
@@ -32,6 +35,10 @@ namespace WebAppMsLogisctics.Models
                 OrderPrice = order.OrderType.Price;
                 RulesOfStartLocation = order.Rule1.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
                 RulesOfEndLocation = order.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
+
+                DateOfDelivery = order.DateOfDelivery;
+                TimeOfDelivery = order.TimeOfDelivery;
+
             }
         }
         public int Id { get; set; }
@@ -46,7 +53,23 @@ namespace WebAppMsLogisctics.Models
         public string EndLocationName { get; set; }
         public List<ResponseRule> RulesOfStartLocation { get; set; }
         public List<ResponseRule> RulesOfEndLocation { get; set; }
+        public Nullable<System.DateTime> DateOfDelivery { get; set; }
+        public Nullable<System.TimeSpan> TimeOfDelivery { get; set; }
 
+        public string DateTimeOfDeliveryForCourier
+        {
+            get
+            {
+                if (DateOfDelivery == null && TimeOfDelivery == null)
+                    return "Доставить сегодня до конца дня";
+                else if (DateOfDelivery == null && TimeOfDelivery != null)
+                    return $"Доставить сегодня к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
+                else if (DateOfDelivery != null && TimeOfDelivery == null)
+                    return $"Доставить {DateOfDelivery.Value.Date.ToShortDateString()} в любое время";
+                else
+                    return $"Доставить {DateOfDelivery.Value.ToShortDateString()} к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
+            }
+        }
         public Nullable<int> CourierId { get; set; }
         public string CourierName { get; set; }
         public Nullable<decimal> CourierRate { get; set; }
