@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Mono.Android">
       <HintPath>D:\VisualStudio2019\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
