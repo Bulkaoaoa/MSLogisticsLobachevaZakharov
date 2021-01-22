@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mob.Pages.AuthPage" Title="Авторизация">
+    <ContentPage.Content>
+        <Grid>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" Margin=" 5, -70, 5, 5" VerticalOptions="Center" >
+                    <Label Margin="5,0" Text="Логин:"></Label>
+                    <Entry Margin="5,0" x:Name="EntryLogin"  HorizontalOptions="FillAndExpand" Placeholder="Логин"></Entry>
+                    <Label Margin="5,0" Text="Пароль:"></Label>
+                    <Entry Margin="5,0" x:Name="EntryPassword" IsPassword="True"  HorizontalOptions="FillAndExpand" Placeholder="Пароль"></Entry>
+                    <Button x:Name="BtnLogin" HorizontalOptions="FillAndExpand" Text="авторизация" Clicked="BtnLogin_Clicked"></Button>
+                </StackLayout>
+            <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label FontAttributes="Bold" Margin="0" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"  Text="Потяните вверх"></Label>
+                <Frame x:Name="MainFrameForSwipe" HorizontalOptions="FillAndExpand"  HeightRequest="30" BackgroundColor="{StaticResource MainYellow }"></Frame>
+            </StackLayout>
+                <!--<Button HorizontalOptions="FillAndExpand" VerticalOptions="End" x:Name="BtnRegister" Text="Регистрация" Clicked="BtnRegister_Clicked"></Button>-->
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

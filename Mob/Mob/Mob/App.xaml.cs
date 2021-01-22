@@ -10,7 +10,7 @@ namespace Mob
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new Pages.AuthPage());
         }
 
         protected override void OnStart()

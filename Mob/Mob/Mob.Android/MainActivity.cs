@@ -18,7 +18,7 @@ namespace Mob.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-
+            Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
