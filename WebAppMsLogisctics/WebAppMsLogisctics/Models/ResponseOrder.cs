@@ -27,11 +27,11 @@ namespace WebAppMsLogisctics.Models
                 Comment = order.Comment;
                 Code = order.Code;
                 ClientName = new ResponseClient(order.Client).FirstName;
-                StartLocationName = new ResponceLocation(order.Location, true).LocationName;
-                EndLocationName = new ResponceLocation(order.Location1, true).LocationName;
+                StartLocationName = new ResponceLocation(order.Location).LocationName;
+                EndLocationName = new ResponceLocation(order.Location1).LocationName;
                 OrderPrice = order.OrderType.Price;
-                RulesOfStartLocation = new ResponceLocation(order.Location, true).ListOfRules;
-                RulesOfEndLocation = new ResponceLocation(order.Location1, true).ListOfRules;
+                RulesOfStartLocation = order.Rule1.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
+                RulesOfEndLocation = order.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
             }
         }
         public int Id { get; set; }

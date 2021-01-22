@@ -20,7 +20,6 @@ namespace WebAppMsLogisctics.Entites
             this.Order = new HashSet<Order>();
             this.Order1 = new HashSet<Order>();
             this.Client = new HashSet<Client>();
-            this.Rule = new HashSet<Rule>();
         }
     
         public int Id { get; set; }
@@ -32,7 +31,5 @@ namespace WebAppMsLogisctics.Entites
         public virtual ICollection<Order> Order1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rule> Rule { get; set; }
     }
 }

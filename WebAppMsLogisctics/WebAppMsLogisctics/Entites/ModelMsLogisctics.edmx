@@ -71,6 +71,8 @@
           <Property Name="ClientRate" Type="decimal" Precision="10" Scale="2" />
           <Property Name="ManagerId" Type="int" Nullable="false" />
           <Property Name="OrderTypeId" Type="int" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="date" />
+          <Property Name="TimeOfDelivery" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -101,12 +103,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="RuleOfLocation">
+        <EntityType Name="RuleOfOrderEnd">
           <Key>
-            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="OrderId" />
             <PropertyRef Name="RuleId" />
           </Key>
-          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="RuleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RuleOfOrderStart">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="RuleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Schedule">
@@ -114,13 +124,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Monday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Tuesday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Wednesday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Thursday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Friday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Saturday" Type="nvarchar" MaxLength="5" />
-          <Property Name="Sunday" Type="nvarchar" MaxLength="5" />
+          <Property Name="Monday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Tuesday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Wednesday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Thursday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Friday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Saturday" Type="nvarchar" MaxLength="11" />
+          <Property Name="Sunday" Type="nvarchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -326,26 +336,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RuleOfLocation_Location">
-          <End Role="Location" Type="Self.Location" Multiplicity="1" />
-          <End Role="RuleOfLocation" Type="Self.RuleOfLocation" Multiplicity="*" />
+        <Association Name="FK_RuleOfOrder_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="RuleOfOrderStart" Type="Self.RuleOfOrderStart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Location">
+            <Principal Role="Order">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RuleOfLocation">
-              <PropertyRef Name="LocationId" />
+            <Dependent Role="RuleOfOrderStart">
+              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RuleOfLocation_Rule">
+        <Association Name="FK_RuleOfOrder_Rule">
           <End Role="Rule" Type="Self.Rule" Multiplicity="1" />
-          <End Role="RuleOfLocation" Type="Self.RuleOfLocation" Multiplicity="*" />
+          <End Role="RuleOfOrderStart" Type="Self.RuleOfOrderStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rule">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RuleOfLocation">
+            <Dependent Role="RuleOfOrderStart">
+              <PropertyRef Name="RuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleOfOrderEnd_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="RuleOfOrderEnd" Type="Self.RuleOfOrderEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleOfOrderEnd">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleOfOrderEnd_Rule">
+          <End Role="Rule" Type="Self.Rule" Multiplicity="1" />
+          <End Role="RuleOfOrderEnd" Type="Self.RuleOfOrderEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleOfOrderEnd">
               <PropertyRef Name="RuleId" />
             </Dependent>
           </ReferentialConstraint>
@@ -375,7 +409,8 @@
           <EntitySet Name="OrderType" EntityType="Self.OrderType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rule" EntityType="Self.Rule" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RuleOfLocation" EntityType="Self.RuleOfLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RuleOfOrderEnd" EntityType="Self.RuleOfOrderEnd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RuleOfOrderStart" EntityType="Self.RuleOfOrderStart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -439,13 +474,21 @@
             <End Role="OrderType" EntitySet="OrderType" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_RuleOfLocation_Location" Association="Self.FK_RuleOfLocation_Location">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="RuleOfLocation" EntitySet="RuleOfLocation" />
+          <AssociationSet Name="FK_RuleOfOrder_Order" Association="Self.FK_RuleOfOrder_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="RuleOfOrderStart" EntitySet="RuleOfOrderStart" />
           </AssociationSet>
-          <AssociationSet Name="FK_RuleOfLocation_Rule" Association="Self.FK_RuleOfLocation_Rule">
+          <AssociationSet Name="FK_RuleOfOrder_Rule" Association="Self.FK_RuleOfOrder_Rule">
             <End Role="Rule" EntitySet="Rule" />
-            <End Role="RuleOfLocation" EntitySet="RuleOfLocation" />
+            <End Role="RuleOfOrderStart" EntitySet="RuleOfOrderStart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleOfOrderEnd_Order" Association="Self.FK_RuleOfOrderEnd_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="RuleOfOrderEnd" EntitySet="RuleOfOrderEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleOfOrderEnd_Rule" Association="Self.FK_RuleOfOrderEnd_Rule">
+            <End Role="Rule" EntitySet="Rule" />
+            <End Role="RuleOfOrderEnd" EntitySet="RuleOfOrderEnd" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -526,8 +569,12 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Location" EntitySet="Location" />
           </AssociationSet>
-          <AssociationSet Name="RuleOfLocation" Association="MsLogisticsBaseModel.RuleOfLocation">
-            <End Role="Location" EntitySet="Location" />
+          <AssociationSet Name="RuleOfOrderEnd" Association="MsLogisticsBaseModel.RuleOfOrderEnd">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Rule" EntitySet="Rule" />
+          </AssociationSet>
+          <AssociationSet Name="RuleOfOrderStart" Association="MsLogisticsBaseModel.RuleOfOrderStart">
+            <End Role="Order" EntitySet="Order" />
             <End Role="Rule" EntitySet="Rule" />
           </AssociationSet>
         </EntityContainer>
@@ -568,7 +615,6 @@
           <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Location" FromRole="Location" ToRole="Order" />
           <NavigationProperty Name="Order1" Relationship="MsLogisticsBaseModel.FK_Order_Location1" FromRole="Location" ToRole="Order" />
           <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.LocationOfClient" FromRole="Location" ToRole="Client" />
-          <NavigationProperty Name="Rule" Relationship="MsLogisticsBaseModel.RuleOfLocation" FromRole="Location" ToRole="Rule" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -594,6 +640,8 @@
           <Property Name="ClientRate" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="ManagerId" Type="Int32" Nullable="false" />
           <Property Name="OrderTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="DateTime" Precision="0" />
+          <Property Name="TimeOfDelivery" Type="Time" Precision="7" />
           <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="Courier" Relationship="MsLogisticsBaseModel.FK_Order_Courier" FromRole="Order" ToRole="Courier" />
           <NavigationProperty Name="Location" Relationship="MsLogisticsBaseModel.FK_Order_Location" FromRole="Order" ToRole="Location" />
@@ -602,6 +650,8 @@
           <NavigationProperty Name="OrderStatus" Relationship="MsLogisticsBaseModel.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="OrderType" Relationship="MsLogisticsBaseModel.FK_Order_OrderType" FromRole="Order" ToRole="OrderType" />
           <NavigationProperty Name="ExtraFile" Relationship="MsLogisticsBaseModel.ExtraFileOrder" FromRole="Order" ToRole="ExtraFile" />
+          <NavigationProperty Name="Rule" Relationship="MsLogisticsBaseModel.RuleOfOrderEnd" FromRole="Order" ToRole="Rule" />
+          <NavigationProperty Name="Rule1" Relationship="MsLogisticsBaseModel.RuleOfOrderStart" FromRole="Order" ToRole="Rule" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -634,20 +684,21 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Location" Relationship="MsLogisticsBaseModel.RuleOfLocation" FromRole="Rule" ToRole="Location" />
+          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.RuleOfOrderEnd" FromRole="Rule" ToRole="Order" />
+          <NavigationProperty Name="Order1" Relationship="MsLogisticsBaseModel.RuleOfOrderStart" FromRole="Rule" ToRole="Order" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Monday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Tuesday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Wednesday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Thursday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Friday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Saturday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Sunday" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Monday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Tuesday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Wednesday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Thursday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Friday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Saturday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Sunday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Courier" Relationship="MsLogisticsBaseModel.FK_Courier_Schedule" FromRole="Schedule" ToRole="Courier" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -830,8 +881,12 @@
           <End Type="MsLogisticsBaseModel.Client" Role="Client" Multiplicity="*" />
           <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="*" />
         </Association>
-        <Association Name="RuleOfLocation">
-          <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="*" />
+        <Association Name="RuleOfOrderEnd">
+          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="MsLogisticsBaseModel.Rule" Role="Rule" Multiplicity="*" />
+        </Association>
+        <Association Name="RuleOfOrderStart">
+          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
           <End Type="MsLogisticsBaseModel.Rule" Role="Rule" Multiplicity="*" />
         </Association>
         </Schema>
@@ -882,6 +937,8 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="MsLogisticsBaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="TimeOfDelivery" ColumnName="TimeOfDelivery" />
+                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
                 <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
                 <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
                 <ScalarProperty Name="ClientRate" ColumnName="ClientRate" />
@@ -986,12 +1043,20 @@
               <ScalarProperty Name="Id" ColumnName="ClientId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="RuleOfLocation" TypeName="MsLogisticsBaseModel.RuleOfLocation" StoreEntitySet="RuleOfLocation">
+          <AssociationSetMapping Name="RuleOfOrderEnd" TypeName="MsLogisticsBaseModel.RuleOfOrderEnd" StoreEntitySet="RuleOfOrderEnd">
             <EndProperty Name="Rule">
               <ScalarProperty Name="Id" ColumnName="RuleId" />
             </EndProperty>
-            <EndProperty Name="Location">
-              <ScalarProperty Name="Id" ColumnName="LocationId" />
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RuleOfOrderStart" TypeName="MsLogisticsBaseModel.RuleOfOrderStart" StoreEntitySet="RuleOfOrderStart">
+            <EndProperty Name="Rule">
+              <ScalarProperty Name="Id" ColumnName="RuleId" />
+            </EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

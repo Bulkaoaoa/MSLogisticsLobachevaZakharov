@@ -8,18 +8,11 @@ namespace WebAppMsLogisctics.Models
 {
     public class ResponceLocation
     {
-        public ResponceLocation(Location location, bool IsNeedLocationRules)
+        public ResponceLocation(Location location)
         {
-            if (IsNeedLocationRules == false)
                 LocationName = location.Address;
-            else
-            {
-                LocationName = location.Address;
-                ListOfRules = location.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
-            }
         }
 
-        public List<ResponseRule> ListOfRules { get; set; }
         public string LocationName { get; set; }
     }
 }

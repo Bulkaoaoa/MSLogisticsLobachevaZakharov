@@ -18,6 +18,8 @@ namespace WebAppMsLogisctics.Entites
         public Order()
         {
             this.ExtraFile = new HashSet<ExtraFile>();
+            this.Rule = new HashSet<Rule>();
+            this.Rule1 = new HashSet<Rule>();
         }
     
         public int Id { get; set; }
@@ -32,6 +34,8 @@ namespace WebAppMsLogisctics.Entites
         public Nullable<decimal> ClientRate { get; set; }
         public int ManagerId { get; set; }
         public int OrderTypeId { get; set; }
+        public Nullable<System.DateTime> DateOfDelivery { get; set; }
+        public Nullable<System.TimeSpan> TimeOfDelivery { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Courier Courier { get; set; }
@@ -42,5 +46,9 @@ namespace WebAppMsLogisctics.Entites
         public virtual OrderType OrderType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExtraFile> ExtraFile { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rule> Rule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rule> Rule1 { get; set; }
     }
 }
