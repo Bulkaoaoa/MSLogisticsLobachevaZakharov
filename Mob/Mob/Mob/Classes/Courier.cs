@@ -11,5 +11,6 @@ namespace Mob.Classes
         public Nullable<int> ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
         public string CourierName { get; set; }
+        public byte[] Photo { get; set; }
     }
 }
