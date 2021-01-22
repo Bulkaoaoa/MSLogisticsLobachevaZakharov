@@ -15,7 +15,7 @@ namespace Mob.Classes
         public string Patronymic { get; set; }
         public byte[] Photo { get; set; }
         public string Telephone { get; set; }
-        public bool IsFree { get; set; }
+        public bool? IsFree { get; set; }
         public Courier ScheduleCourier { get; set; }
         public string  FI {
             get

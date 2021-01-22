@@ -20,5 +20,11 @@ namespace Mob.Pages.Client
             InitializeComponent();
             this.BindingContext = AppData.CurrUser;
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            //Application.Current.Properties["UserId"] = 0;
+            //Application.Current.SavePropertiesAsync();
+        }
     }
 }

@@ -20,39 +20,61 @@ namespace Mob.Pages
         public AuthPage()
         {
             InitializeComponent();
+            //int currUserId = 0;
+            //try
+            //{
+            //    currUserId = int.Parse(Application.Current.Properties["UserId"].ToString());
+            //}
+            //catch (Exception)
+            //{
+            //    Application.Current.Properties["UserId"] = 0;
+            //    Application.Current.SavePropertiesAsync();
+            //}
+            //if (currUserId != 0)
+            //{
+            //    HttpClient client = new HttpClient();
+            //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            //    var task = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users/{currUserId}");
+            //    if (task.IsCompleted == true)
+            //    {
+            //        var currUser = JsonConvert.DeserializeObject<User>(task.Result);
+            //        AppData.CurrUser = currUser;
+            //        if (AppData.CurrUser.RoleId == 1)
+            //            Navigation.PushAsync(new Client.ClientMainPage());
+            //        else  // навигировать на меню курьера
+            //            Toast.MakeText(Android.App.Application.Context, "Пажжи", ToastLength.Long);
+            //    }
+            //    else
+            //        Toast.MakeText(Android.App.Application.Context, "Произошла ошибка, пройдите авторизацию ещё раз", ToastLength.Long);
+            //}
         }
 
         private void BtnLogin_Clicked(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var task = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users?login={EntryLogin.Text}&password={EntryPassword.Text}").Result;
-            //try
-            //{
-            //    task.Wait();
-            //    if (task.Status == TaskStatus.RanToCompletion)
-            //    { 
-            if (SwitchRememberMe.IsToggled == true)//Если запомнить меня
+            try
             {
-                //Application.Current.Properties[""]
-            }
-                    Toast.MakeText(Android.App.Application.Context, "Все ок, мы нашли", ToastLength.Short).Show();
-                    AppData.CurrUser = JsonConvert.DeserializeObject<User>(task);
+                var task = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users?login={EntryLogin.Text}&password={EntryPassword.Text}").Result;
+                
+                Toast.MakeText(Android.App.Application.Context, "Все ок, мы нашли", ToastLength.Short).Show();
+                AppData.CurrUser = JsonConvert.DeserializeObject<User>(task);
+                if (SwitchRememberMe.IsToggled == true)//Если запомнить меня
+                {
+                    //Application.Current.Properties["UserId"] = AppData.CurrUser.Id;
+                    //Application.Current.SavePropertiesAsync();
+                }
+                if (AppData.CurrUser.RoleId == 1)
                     Navigation.PushAsync(new Client.ClientMainPage());
-            //    }    
-            //    else if (task.Status == TaskStatus.Faulted)
-            //        Toast.MakeText(Android.App.Application.Context, $"Все не ок, error: {task.Exception.Message}", ToastLength.Short).Show();
-            //    else if (task.Status == TaskStatus.Canceled)
-            //        Toast.MakeText(Android.App.Application.Context, $"Все не ок, операция отменилась", ToastLength.Short).Show();
-            //}
-            //catch (Exception)
-            //{
-            //    Toast.MakeText(Android.App.Application.Context, $"Все не ок, error: {task.Exception.Message}", ToastLength.Short).Show();
-            //}
-
-
-
-
+                else if (AppData.CurrUser.RoleId == 3) // навигировать на меню курьера
+                    Toast.MakeText(Android.App.Application.Context, "Пажжи", ToastLength.Long).Show();
+                else
+                    Toast.MakeText(Android.App.Application.Context, "Для менеджеров мобильное приложение не предусмотрено. Пожалуйста, зайдите с пк версии", ToastLength.Long).Show();
+            }
+            catch (Exception)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Такого пользователя не существует, пожалуйста, зарегистрируйтесь или свяжитесь с тех. поддержкой", ToastLength.Long).Show();
+            }
         }
 
         private void BtnRegister_Clicked(object sender, EventArgs e)

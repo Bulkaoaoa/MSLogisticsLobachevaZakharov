@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mob.Pages.Client.ClientMainPage" Title="Мои заказы">
+             x:Class="Mob.Pages.Client.ClientMainPage" Title="Мои заказы" NavigationPage.BackButtonTitle="🚪" Disappearing="ContentPage_Disappearing">
     <ContentPage.Content>
         <StackLayout>
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -12,13 +12,13 @@
                         </Frame>
                         <Label HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="{Binding FI}"></Label>
                     </StackLayout>
-                    <!--<ListView x:Name="LvMyOrders">
+                    <ListView HasUnevenRows="True" x:Name="LvMyOrders">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Label></Label>
+                                
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>-->
+                    </ListView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
