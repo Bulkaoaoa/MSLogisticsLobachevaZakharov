@@ -15,7 +15,7 @@ namespace WebAppMsLogisctics.Controllers
 {
     public class OrdersController : ApiController
     {
-        private MsLogisticsBaseEntities db = new MsLogisticsBaseEntities();
+        private MSLogisticsLZEntities db = new MSLogisticsLZEntities();
 
         // GET: api/Orders
         public IQueryable<Order> GetOrder()

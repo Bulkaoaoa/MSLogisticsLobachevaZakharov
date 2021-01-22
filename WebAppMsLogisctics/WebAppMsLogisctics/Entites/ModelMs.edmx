@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MsLogisticsBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MSLogisticsLZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -131,16 +131,6 @@
           <Property Name="Friday" Type="nvarchar" MaxLength="11" />
           <Property Name="Saturday" Type="nvarchar" MaxLength="11" />
           <Property Name="Sunday" Type="nvarchar" MaxLength="11" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -396,7 +386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MsLogisticsBaseModelStoreContainer">
+        <EntityContainer Name="MSLogisticsLZModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courier" EntityType="Self.Courier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExtraFile" EntityType="Self.ExtraFile" Schema="dbo" store:Type="Tables" />
@@ -412,7 +402,6 @@
           <EntitySet Name="RuleOfOrderEnd" EntityType="Self.RuleOfOrderEnd" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RuleOfOrderStart" EntityType="Self.RuleOfOrderStart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
             <End Role="User" EntitySet="User" />
@@ -495,97 +484,19 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MsLogisticsBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MsLogisticsBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Client" EntityType="MsLogisticsBaseModel.Client" />
-          <EntitySet Name="Courier" EntityType="MsLogisticsBaseModel.Courier" />
-          <EntitySet Name="ExtraFile" EntityType="MsLogisticsBaseModel.ExtraFile" />
-          <EntitySet Name="Location" EntityType="MsLogisticsBaseModel.Location" />
-          <EntitySet Name="Manager" EntityType="MsLogisticsBaseModel.Manager" />
-          <EntitySet Name="Order" EntityType="MsLogisticsBaseModel.Order" />
-          <EntitySet Name="OrderStatus" EntityType="MsLogisticsBaseModel.OrderStatus" />
-          <EntitySet Name="OrderType" EntityType="MsLogisticsBaseModel.OrderType" />
-          <EntitySet Name="Role" EntityType="MsLogisticsBaseModel.Role" />
-          <EntitySet Name="Rule" EntityType="MsLogisticsBaseModel.Rule" />
-          <EntitySet Name="Schedule" EntityType="MsLogisticsBaseModel.Schedule" />
-          <EntitySet Name="sysdiagrams" EntityType="MsLogisticsBaseModel.sysdiagrams" />
-          <EntitySet Name="User" EntityType="MsLogisticsBaseModel.User" />
-          <AssociationSet Name="FK_Client_User" Association="MsLogisticsBaseModel.FK_Client_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Client" EntitySet="Client" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Client" Association="MsLogisticsBaseModel.FK_Order_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Courier_Schedule" Association="MsLogisticsBaseModel.FK_Courier_Schedule">
-            <End Role="Schedule" EntitySet="Schedule" />
-            <End Role="Courier" EntitySet="Courier" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Courier_User" Association="MsLogisticsBaseModel.FK_Courier_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Courier" EntitySet="Courier" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Courier" Association="MsLogisticsBaseModel.FK_Order_Courier">
-            <End Role="Courier" EntitySet="Courier" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Location" Association="MsLogisticsBaseModel.FK_Order_Location">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Location1" Association="MsLogisticsBaseModel.FK_Order_Location1">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Manager_User" Association="MsLogisticsBaseModel.FK_Manager_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Manager" EntitySet="Manager" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Manager" Association="MsLogisticsBaseModel.FK_Order_Manager">
-            <End Role="Manager" EntitySet="Manager" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_OrderStatus" Association="MsLogisticsBaseModel.FK_Order_OrderStatus">
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_OrderType" Association="MsLogisticsBaseModel.FK_Order_OrderType">
-            <End Role="OrderType" EntitySet="OrderType" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="MsLogisticsBaseModel.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="ExtraFileOrder" Association="MsLogisticsBaseModel.ExtraFileOrder">
-            <End Role="ExtraFile" EntitySet="ExtraFile" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="LocationOfClient" Association="MsLogisticsBaseModel.LocationOfClient">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Location" EntitySet="Location" />
-          </AssociationSet>
-          <AssociationSet Name="RuleOfOrderEnd" Association="MsLogisticsBaseModel.RuleOfOrderEnd">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Rule" EntitySet="Rule" />
-          </AssociationSet>
-          <AssociationSet Name="RuleOfOrderStart" Association="MsLogisticsBaseModel.RuleOfOrderStart">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Rule" EntitySet="Rule" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="MSLogisticsLZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="MsLogisticsBaseModel.FK_Client_User" FromRole="Client" ToRole="User" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Client" FromRole="Client" ToRole="Order" />
-          <NavigationProperty Name="Location" Relationship="MsLogisticsBaseModel.LocationOfClient" FromRole="Client" ToRole="Location" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Client_User" FromRole="Client" ToRole="User" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
+          <NavigationProperty Name="Location" Relationship="Self.LocationOfClient" FromRole="Client" ToRole="Location" />
         </EntityType>
         <EntityType Name="Courier">
           <Key>
@@ -594,35 +505,35 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="IsFree" Type="Boolean" Nullable="false" />
           <Property Name="ScheduleId" Type="Int32" />
-          <NavigationProperty Name="Schedule" Relationship="MsLogisticsBaseModel.FK_Courier_Schedule" FromRole="Courier" ToRole="Schedule" />
-          <NavigationProperty Name="User" Relationship="MsLogisticsBaseModel.FK_Courier_User" FromRole="Courier" ToRole="User" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Courier" FromRole="Courier" ToRole="Order" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Courier_Schedule" FromRole="Courier" ToRole="Schedule" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Courier_User" FromRole="Courier" ToRole="User" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Courier" FromRole="Courier" ToRole="Order" />
         </EntityType>
         <EntityType Name="ExtraFile">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileData" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.ExtraFileOrder" FromRole="ExtraFile" ToRole="Order" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.ExtraFileOrder" FromRole="ExtraFile" ToRole="Order" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Location" FromRole="Location" ToRole="Order" />
-          <NavigationProperty Name="Order1" Relationship="MsLogisticsBaseModel.FK_Order_Location1" FromRole="Location" ToRole="Order" />
-          <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.LocationOfClient" FromRole="Location" ToRole="Client" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Location" FromRole="Location" ToRole="Order" />
+          <NavigationProperty Name="Order1" Relationship="Self.FK_Order_Location1" FromRole="Location" ToRole="Order" />
+          <NavigationProperty Name="Client" Relationship="Self.LocationOfClient" FromRole="Location" ToRole="Client" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="MsLogisticsBaseModel.FK_Manager_User" FromRole="Manager" ToRole="User" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_Manager" FromRole="Manager" ToRole="Order" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Manager_User" FromRole="Manager" ToRole="User" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Manager" FromRole="Manager" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -630,7 +541,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="StartLocation" Type="Int32" Nullable="false" />
@@ -642,50 +553,50 @@
           <Property Name="OrderTypeId" Type="Int32" Nullable="false" />
           <Property Name="DateOfDelivery" Type="DateTime" Precision="0" />
           <Property Name="TimeOfDelivery" Type="Time" Precision="7" />
-          <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
-          <NavigationProperty Name="Courier" Relationship="MsLogisticsBaseModel.FK_Order_Courier" FromRole="Order" ToRole="Courier" />
-          <NavigationProperty Name="Location" Relationship="MsLogisticsBaseModel.FK_Order_Location" FromRole="Order" ToRole="Location" />
-          <NavigationProperty Name="Location1" Relationship="MsLogisticsBaseModel.FK_Order_Location1" FromRole="Order" ToRole="Location" />
-          <NavigationProperty Name="Manager" Relationship="MsLogisticsBaseModel.FK_Order_Manager" FromRole="Order" ToRole="Manager" />
-          <NavigationProperty Name="OrderStatus" Relationship="MsLogisticsBaseModel.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
-          <NavigationProperty Name="OrderType" Relationship="MsLogisticsBaseModel.FK_Order_OrderType" FromRole="Order" ToRole="OrderType" />
-          <NavigationProperty Name="ExtraFile" Relationship="MsLogisticsBaseModel.ExtraFileOrder" FromRole="Order" ToRole="ExtraFile" />
-          <NavigationProperty Name="Rule" Relationship="MsLogisticsBaseModel.RuleOfOrderEnd" FromRole="Order" ToRole="Rule" />
-          <NavigationProperty Name="Rule1" Relationship="MsLogisticsBaseModel.RuleOfOrderStart" FromRole="Order" ToRole="Rule" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Courier" Relationship="Self.FK_Order_Courier" FromRole="Order" ToRole="Courier" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Order_Location" FromRole="Order" ToRole="Location" />
+          <NavigationProperty Name="Location1" Relationship="Self.FK_Order_Location1" FromRole="Order" ToRole="Location" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Order_Manager" FromRole="Order" ToRole="Manager" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="OrderType" Relationship="Self.FK_Order_OrderType" FromRole="Order" ToRole="OrderType" />
+          <NavigationProperty Name="ExtraFile" Relationship="Self.ExtraFileOrder" FromRole="Order" ToRole="ExtraFile" />
+          <NavigationProperty Name="Rule" Relationship="Self.RuleOfOrderEnd" FromRole="Order" ToRole="Rule" />
+          <NavigationProperty Name="Rule1" Relationship="Self.RuleOfOrderStart" FromRole="Order" ToRole="Rule" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
         </EntityType>
         <EntityType Name="OrderType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.FK_Order_OrderType" FromRole="OrderType" ToRole="Order" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderType" FromRole="OrderType" ToRole="Order" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="MsLogisticsBaseModel.FK_User_Role" FromRole="Role" ToRole="User" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Rule">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="MsLogisticsBaseModel.RuleOfOrderEnd" FromRole="Rule" ToRole="Order" />
-          <NavigationProperty Name="Order1" Relationship="MsLogisticsBaseModel.RuleOfOrderStart" FromRole="Rule" ToRole="Order" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.RuleOfOrderEnd" FromRole="Rule" ToRole="Order" />
+          <NavigationProperty Name="Order1" Relationship="Self.RuleOfOrderStart" FromRole="Rule" ToRole="Order" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
@@ -699,39 +610,29 @@
           <Property Name="Friday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="Saturday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="Sunday" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Courier" Relationship="MsLogisticsBaseModel.FK_Courier_Schedule" FromRole="Schedule" ToRole="Courier" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Courier" Relationship="Self.FK_Courier_Schedule" FromRole="Schedule" ToRole="Courier" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="MsLogisticsBaseModel.FK_Client_User" FromRole="User" ToRole="Client" />
-          <NavigationProperty Name="Courier" Relationship="MsLogisticsBaseModel.FK_Courier_User" FromRole="User" ToRole="Courier" />
-          <NavigationProperty Name="Manager" Relationship="MsLogisticsBaseModel.FK_Manager_User" FromRole="User" ToRole="Manager" />
-          <NavigationProperty Name="Role" Relationship="MsLogisticsBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_User" FromRole="User" ToRole="Client" />
+          <NavigationProperty Name="Courier" Relationship="Self.FK_Courier_User" FromRole="User" ToRole="Courier" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_User" FromRole="User" ToRole="Manager" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Client_User">
-          <End Type="MsLogisticsBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -742,8 +643,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Client">
-          <End Type="MsLogisticsBaseModel.Client" Role="Client" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
@@ -754,8 +655,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Courier_Schedule">
-          <End Type="MsLogisticsBaseModel.Schedule" Role="Schedule" Multiplicity="0..1" />
-          <End Type="MsLogisticsBaseModel.Courier" Role="Courier" Multiplicity="*" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="0..1" />
+          <End Role="Courier" Type="Self.Courier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Schedule">
               <PropertyRef Name="Id" />
@@ -766,8 +667,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Courier_User">
-          <End Type="MsLogisticsBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Courier" Role="Courier" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Courier" Type="Self.Courier" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -778,8 +679,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Courier">
-          <End Type="MsLogisticsBaseModel.Courier" Role="Courier" Multiplicity="0..1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Courier" Type="Self.Courier" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courier">
               <PropertyRef Name="Id" />
@@ -790,8 +691,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Location">
-          <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Location">
               <PropertyRef Name="Id" />
@@ -802,8 +703,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Location1">
-          <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Location">
               <PropertyRef Name="Id" />
@@ -814,8 +715,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Manager_User">
-          <End Type="MsLogisticsBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Manager" Role="Manager" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -826,8 +727,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Manager">
-          <End Type="MsLogisticsBaseModel.Manager" Role="Manager" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Manager">
               <PropertyRef Name="Id" />
@@ -838,8 +739,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_OrderStatus">
-          <End Type="MsLogisticsBaseModel.OrderStatus" Role="OrderStatus" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderStatus">
               <PropertyRef Name="Id" />
@@ -850,8 +751,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_OrderType">
-          <End Type="MsLogisticsBaseModel.OrderType" Role="OrderType" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="OrderType" Type="Self.OrderType" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderType">
               <PropertyRef Name="Id" />
@@ -862,8 +763,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Type="MsLogisticsBaseModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="MsLogisticsBaseModel.User" Role="User" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Id" />
@@ -874,189 +775,256 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ExtraFileOrder">
-          <End Type="MsLogisticsBaseModel.ExtraFile" Role="ExtraFile" Multiplicity="*" />
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="ExtraFile" Type="Self.ExtraFile" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
         </Association>
         <Association Name="LocationOfClient">
-          <End Type="MsLogisticsBaseModel.Client" Role="Client" Multiplicity="*" />
-          <End Type="MsLogisticsBaseModel.Location" Role="Location" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
         </Association>
         <Association Name="RuleOfOrderEnd">
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
-          <End Type="MsLogisticsBaseModel.Rule" Role="Rule" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Rule" Type="Self.Rule" Multiplicity="*" />
         </Association>
         <Association Name="RuleOfOrderStart">
-          <End Type="MsLogisticsBaseModel.Order" Role="Order" Multiplicity="*" />
-          <End Type="MsLogisticsBaseModel.Rule" Role="Rule" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Rule" Type="Self.Rule" Multiplicity="*" />
         </Association>
-        </Schema>
+        <EntityContainer Name="MSLogisticsLZEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Courier" EntityType="Self.Courier" />
+          <EntitySet Name="ExtraFile" EntityType="Self.ExtraFile" />
+          <EntitySet Name="Location" EntityType="Self.Location" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="OrderType" EntityType="Self.OrderType" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Rule" EntityType="Self.Rule" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courier_Schedule" Association="Self.FK_Courier_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Courier" EntitySet="Courier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courier_User" Association="Self.FK_Courier_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Courier" EntitySet="Courier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Courier" Association="Self.FK_Order_Courier">
+            <End Role="Courier" EntitySet="Courier" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location1" Association="Self.FK_Order_Location1">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_User" Association="Self.FK_Manager_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Manager" Association="Self.FK_Order_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderType" Association="Self.FK_Order_OrderType">
+            <End Role="OrderType" EntitySet="OrderType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="ExtraFileOrder" Association="Self.ExtraFileOrder">
+            <End Role="ExtraFile" EntitySet="ExtraFile" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="LocationOfClient" Association="Self.LocationOfClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="RuleOfOrderEnd" Association="Self.RuleOfOrderEnd">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Rule" EntitySet="Rule" />
+          </AssociationSet>
+          <AssociationSet Name="RuleOfOrderStart" Association="Self.RuleOfOrderStart">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Rule" EntitySet="Rule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MsLogisticsBaseModelStoreContainer" CdmEntityContainer="MsLogisticsBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="MSLogisticsLZModelStoreContainer" CdmEntityContainer="MSLogisticsLZEntities">
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Client">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courier">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Courier">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Courier">
               <MappingFragment StoreEntitySet="Courier">
-                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
-                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExtraFile">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.ExtraFile">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.ExtraFile">
               <MappingFragment StoreEntitySet="ExtraFile">
-                <ScalarProperty Name="FileData" ColumnName="FileData" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Location">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Location">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Location">
               <MappingFragment StoreEntitySet="Location">
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manager">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Manager">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Manager">
               <MappingFragment StoreEntitySet="Manager">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Order">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="TimeOfDelivery" ColumnName="TimeOfDelivery" />
-                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
-                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
-                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
-                <ScalarProperty Name="ClientRate" ColumnName="ClientRate" />
-                <ScalarProperty Name="CourierRate" ColumnName="CourierRate" />
-                <ScalarProperty Name="CourierId" ColumnName="CourierId" />
-                <ScalarProperty Name="EndLocation" ColumnName="EndLocation" />
-                <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
+                <ScalarProperty Name="EndLocation" ColumnName="EndLocation" />
+                <ScalarProperty Name="CourierId" ColumnName="CourierId" />
+                <ScalarProperty Name="CourierRate" ColumnName="CourierRate" />
+                <ScalarProperty Name="ClientRate" ColumnName="ClientRate" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+                <ScalarProperty Name="TimeOfDelivery" ColumnName="TimeOfDelivery" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.OrderStatus">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderType">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.OrderType">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.OrderType">
               <MappingFragment StoreEntitySet="OrderType">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Role">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rule">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Rule">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Rule">
               <MappingFragment StoreEntitySet="Rule">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Schedule">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.Schedule">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
-                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
-                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
-                <ScalarProperty Name="Friday" ColumnName="Friday" />
-                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
-                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
-                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
-                <ScalarProperty Name="Monday" ColumnName="Monday" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="MsLogisticsBaseModel.User">
+            <EntityTypeMapping TypeName="MSLogisticsLZModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ExtraFileOrder" TypeName="MsLogisticsBaseModel.ExtraFileOrder" StoreEntitySet="ExtraFileOrder">
-            <EndProperty Name="Order">
-              <ScalarProperty Name="Id" ColumnName="OrderId" />
-            </EndProperty>
+          <AssociationSetMapping Name="ExtraFileOrder" TypeName="MSLogisticsLZModel.ExtraFileOrder" StoreEntitySet="ExtraFileOrder">
             <EndProperty Name="ExtraFile">
               <ScalarProperty Name="Id" ColumnName="ExtraFIleId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="LocationOfClient" TypeName="MsLogisticsBaseModel.LocationOfClient" StoreEntitySet="LocationOfClient">
-            <EndProperty Name="Location">
-              <ScalarProperty Name="Id" ColumnName="LocationId" />
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="LocationOfClient" TypeName="MSLogisticsLZModel.LocationOfClient" StoreEntitySet="LocationOfClient">
             <EndProperty Name="Client">
               <ScalarProperty Name="Id" ColumnName="ClientId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="RuleOfOrderEnd" TypeName="MsLogisticsBaseModel.RuleOfOrderEnd" StoreEntitySet="RuleOfOrderEnd">
-            <EndProperty Name="Rule">
-              <ScalarProperty Name="Id" ColumnName="RuleId" />
+            <EndProperty Name="Location">
+              <ScalarProperty Name="Id" ColumnName="LocationId" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RuleOfOrderEnd" TypeName="MSLogisticsLZModel.RuleOfOrderEnd" StoreEntitySet="RuleOfOrderEnd">
             <EndProperty Name="Order">
               <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="RuleOfOrderStart" TypeName="MsLogisticsBaseModel.RuleOfOrderStart" StoreEntitySet="RuleOfOrderStart">
             <EndProperty Name="Rule">
               <ScalarProperty Name="Id" ColumnName="RuleId" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RuleOfOrderStart" TypeName="MSLogisticsLZModel.RuleOfOrderStart" StoreEntitySet="RuleOfOrderStart">
             <EndProperty Name="Order">
               <ScalarProperty Name="Id" ColumnName="OrderId" />
+            </EndProperty>
+            <EndProperty Name="Rule">
+              <ScalarProperty Name="Id" ColumnName="RuleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

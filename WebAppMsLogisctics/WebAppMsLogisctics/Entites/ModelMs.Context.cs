@@ -13,10 +13,10 @@ namespace WebAppMsLogisctics.Entites
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MsLogisticsBaseEntities : DbContext
+    public partial class MSLogisticsLZEntities : DbContext
     {
-        public MsLogisticsBaseEntities()
-            : base("name=MsLogisticsBaseEntities")
+        public MSLogisticsLZEntities()
+            : base("name=MSLogisticsLZEntities")
         {
         }
     
@@ -36,7 +36,6 @@ namespace WebAppMsLogisctics.Entites
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Rule> Rule { get; set; }
         public virtual DbSet<Schedule> Schedule { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

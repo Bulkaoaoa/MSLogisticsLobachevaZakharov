@@ -167,58 +167,55 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entites\Client.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Courier.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\ExtraFile.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Location.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Manager.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMsLogisctics.Context.cs">
+    <Compile Include="Entites\ModelMs.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMsLogisctics.Context.tt</DependentUpon>
+      <DependentUpon>ModelMs.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMsLogisctics.cs">
+    <Compile Include="Entites\ModelMs.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\ModelMsLogisctics.Designer.cs">
+    <Compile Include="Entites\ModelMs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+      <DependentUpon>ModelMs.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entites\Order.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\OrderStatus.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\OrderType.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Role.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Rule.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\Schedule.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entites\sysdiagrams.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Entites\User.cs">
-      <DependentUpon>ModelMsLogisctics.tt</DependentUpon>
+      <DependentUpon>ModelMs.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,15 +235,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Entites\ModelMsLogisctics.Context.tt">
+    <Content Include="Entites\ModelMs.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelMsLogisctics.Context.cs</LastGenOutput>
-      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+      <DependentUpon>ModelMs.edmx</DependentUpon>
+      <LastGenOutput>ModelMs.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entites\ModelMsLogisctics.tt">
+    <Content Include="Entites\ModelMs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
-      <LastGenOutput>ModelMsLogisctics.cs</LastGenOutput>
+      <DependentUpon>ModelMs.edmx</DependentUpon>
+      <LastGenOutput>ModelMs.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -272,12 +269,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Entites\ModelMsLogisctics.edmx">
+    <EntityDeploy Include="Entites\ModelMs.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelMsLogisctics.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelMs.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entites\ModelMsLogisctics.edmx.diagram">
-      <DependentUpon>ModelMsLogisctics.edmx</DependentUpon>
+    <Content Include="Entites\ModelMs.edmx.diagram">
+      <DependentUpon>ModelMs.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
