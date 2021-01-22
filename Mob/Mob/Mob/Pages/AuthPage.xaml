@@ -10,6 +10,10 @@
                     <Entry Margin="5,0" x:Name="EntryLogin"  HorizontalOptions="FillAndExpand" Placeholder="Логин"></Entry>
                     <Label Margin="5,0" Text="Пароль:"></Label>
                     <Entry Margin="5,0" x:Name="EntryPassword" IsPassword="True"  HorizontalOptions="FillAndExpand" Placeholder="Пароль"></Entry>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Switch x:Name="SwitchRememberMe" Margin="5, 0, 0,0"></Switch>
+                    <Label Text="Запомнить меня" Margin="0,5,0,0"></Label>
+                </StackLayout>
                     <Button x:Name="BtnLogin" HorizontalOptions="FillAndExpand" Text="авторизация" Clicked="BtnLogin_Clicked"></Button>
                 </StackLayout>
             <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand">

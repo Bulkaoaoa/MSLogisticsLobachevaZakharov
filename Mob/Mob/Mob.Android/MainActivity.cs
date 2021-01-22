@@ -17,9 +17,11 @@ namespace Mob.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+
+            base.OnCreate(savedInstanceState);
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
-            base.OnCreate(savedInstanceState);
+            Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

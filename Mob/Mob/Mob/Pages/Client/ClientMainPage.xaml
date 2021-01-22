@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mob.Pages.Client.ClientMainPage" Title="Мои заказы">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" >
+                        <Frame HasShadow="False" Margin="5" WidthRequest="70" HorizontalOptions="Center" HeightRequest="70" BackgroundColor="{StaticResource MainYellow}" CornerRadius="100">
+                            <Image x:Name="MainImage" Source="{Binding Photo}" Margin="2"></Image>
+                        </Frame>
+                        <Label HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="{Binding FI}"></Label>
+                    </StackLayout>
+                    <!--<ListView x:Name="LvMyOrders">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Label></Label>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>-->
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
