@@ -39,10 +39,12 @@ namespace WebAppMsLogisctics.Controllers
         [ResponseType(typeof(List<ResponseOrder>)), Route("api/OrdersByUser")]
         public IHttpActionResult GetOrdersByUser(int clientId)
         {
+            //TODO: Возможно будет смысл разделять сразу и не показывать отмененные заказы (см таблицу со статусами)
             List<Order> currOrderList = db.Order.ToList().Where(p => p.ClientId == clientId).ToList();
             //Тут можно сделать проверку на нулевость листа и отправлять 404, но в общем если он будет пустую возвращать, то без разницы
             //Если хочешь, можешь прикрутить. Там обычный if
-            return Ok(currOrderList.ConvertAll(p=> new ResponseOrder(p,true)).ToList());
+            var currList = currOrderList.ConvertAll(p => new ResponseOrder(p, true)).ToList();
+            return Ok(currList);
         }
 
         // GET: get Orders by Courier id (For Courier Look)
@@ -52,7 +54,8 @@ namespace WebAppMsLogisctics.Controllers
             List<Order> currOrderList = db.Order.ToList().Where(p => p.CourierId == null).ToList();
             //Тут можно сделать проверку на нулевость листа и отправлять 404, но в общем если он будет пустую возвращать, то без разницы
             //Если хочешь, можешь прикрутить. Там обычный if
-            return Ok(currOrderList.ConvertAll(p => new ResponseOrder(p, false)).ToList());
+            var currList = currOrderList.ConvertAll(p => new ResponseOrder(p, false)).ToList();
+            return Ok(currList);
         }
 
         // PUT: api/Orders/5

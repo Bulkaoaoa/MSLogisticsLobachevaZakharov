@@ -49,7 +49,6 @@ namespace WebAppMsLogisctics.Models
         public string Patronymic { get; set; }
         public byte[] Photo { get; set; }
         public string Telephone { get; set; }
-        //Для курьера
         public bool? IsFree { get; set; }
         public ResponseCourier ScheduleCourier { get; set; }
     }

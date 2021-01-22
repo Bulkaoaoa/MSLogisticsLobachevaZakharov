@@ -15,9 +15,9 @@ namespace WebAppMsLogisctics.Models
                 Id = order.Id;
                 Comment = order.Comment;
                 Code = order.Code;
-                CourierName = new ResponseCourier(order.Courier, false).CourierName;
+                if (order.Courier != null)
+                    CourierName = new ResponseCourier(order.Courier, false).CourierName;
                 // TODO:  Надо сделать средний подсчет рейтинга, знаю как делать, но чет хз
-                //Вот эти два молодых могут ломаться 
                 StatusName = order.OrderStatus.Name;
                 OrderPrice = order.OrderType.Price;
 
@@ -30,8 +30,8 @@ namespace WebAppMsLogisctics.Models
                 Comment = order.Comment;
                 Code = order.Code;
                 ClientName = new ResponseClient(order.Client).FirstName;
-                StartLocationName = new ResponceLocation(order.Location).LocationName;
-                EndLocationName = new ResponceLocation(order.Location1).LocationName;
+                StartLocationName = new ResponceLocation(order.Location).Address;
+                EndLocationName = new ResponceLocation(order.Location1).Address;
                 OrderPrice = order.OrderType.Price;
                 RulesOfStartLocation = order.Rule1.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
                 RulesOfEndLocation = order.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
@@ -77,5 +77,7 @@ namespace WebAppMsLogisctics.Models
         public int ManagerId { get; set; }
         public int OrderTypeId { get; set; }
         public decimal OrderPrice { get; set; }
+
+        public int StatusId { get; set; }
     }
 }

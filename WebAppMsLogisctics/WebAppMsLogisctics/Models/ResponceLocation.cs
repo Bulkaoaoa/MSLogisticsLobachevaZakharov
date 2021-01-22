@@ -10,9 +10,10 @@ namespace WebAppMsLogisctics.Models
     {
         public ResponceLocation(Location location)
         {
-                LocationName = location.Address;
+                Address = location.Address;
         }
 
-        public string LocationName { get; set; }
+        public int Id { get; set; }
+        public string Address { get; set; }
     }
 }

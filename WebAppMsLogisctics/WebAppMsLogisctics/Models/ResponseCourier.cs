@@ -14,13 +14,17 @@ namespace WebAppMsLogisctics.Models
             {
                 Id = courier.Id;
                 IsFree = courier.IsFree;
-                CourierName = new ResponseUser(courier.User, true).FirstName;
+                CourierName = courier.User.FirstName;
+                if (courier.User.Photo != null)
+                    Photo = courier.User.Photo;
             }
             else
             {
                 Id = courier.Id;
                 IsFree = courier.IsFree;
                 Schedule = new ResponseSchedule(courier.Schedule);
+                if (courier.User.Photo != null)
+                    Photo = courier.User.Photo;
             }
         }
         public int Id { get; set; }
@@ -28,5 +32,6 @@ namespace WebAppMsLogisctics.Models
         public Nullable<int> ScheduleId { get; set; }
         public ResponseSchedule Schedule { get; set; }
         public string CourierName { get; set; }
+        public byte[] Photo { get; set; }
     }
 }
