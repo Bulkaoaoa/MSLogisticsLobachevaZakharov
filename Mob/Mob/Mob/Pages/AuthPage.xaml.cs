@@ -77,15 +77,10 @@ namespace Mob.Pages
             }
         }
 
-        private void BtnRegister_Clicked(object sender, EventArgs e)
-        {
-            Toast.MakeText(Android.App.Application.Context, "Регистрация", ToastLength.Long).Show();
-        }
-
         private async void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
         {
             await MainFrameForSwipe.ScaleYTo(7, 200);
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new RegistrationPage());
             await MainFrameForSwipe.ScaleYTo(1, 20);
 
         }

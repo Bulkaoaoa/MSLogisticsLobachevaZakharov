@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mob.Pages.RegistrationPage" Title="Регистрация" >
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Label Margin="5,5,5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Логин/почта"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Логин/почта" x:Name="EntryLogin" Keyboard="Email"></Entry>
+
+                    <Label Margin="5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Пароль"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Пароль" x:Name="EntryPassword" IsPassword="True" ></Entry>
+
+                    <Label Margin="5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Имя"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Имя" x:Name="EntryFirstName" ></Entry>
+
+                    <Label Margin="5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Фамилия"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Фамилия" x:Name="EntryLastName" ></Entry>
+
+                    <Label Margin="5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Отчество"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Отчество" x:Name="EntryPatronymic" ></Entry>
+
+                    <Label Margin="5,0" HorizontalOptions="Start" HorizontalTextAlignment="Start" Text="Телефон"></Label>
+                    <Entry Margin="5,0" HorizontalOptions="FillAndExpand" Placeholder="Телефон" Keyboard="Numeric" x:Name="EntryTelephone" ></Entry>
+                    <Button x:Name="BtnRegister"  Text="Регистрация" Clicked="BtnRegister_Clicked"></Button>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
