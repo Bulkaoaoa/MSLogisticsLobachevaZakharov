@@ -20,7 +20,7 @@ namespace Mob.Classes
         public List<Rule> RulesOfEndLocation { get; set; }
         public Nullable<System.DateTime> DateOfDelivery { get; set; }
         public Nullable<System.TimeSpan> TimeOfDelivery { get; set; }
-        public string DateTimeOfDeliveryForCourie { get; set; }
+        public string DateTimeOfDeliveryForCourier { get; set; }
         public string DateTimeOfDeliveryForClient { get; set; }
         public Nullable<int> CourierId { get; set; }
         public string CourierName { get; set; }
