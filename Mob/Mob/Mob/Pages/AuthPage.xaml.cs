@@ -67,7 +67,7 @@ namespace Mob.Pages
                 if (AppData.CurrUser.RoleId == 1)
                     Navigation.PushAsync(new Client.ClientMainPage());
                 else if (AppData.CurrUser.RoleId == 3) // навигировать на меню курьера
-                    Toast.MakeText(Android.App.Application.Context, "Пажжи", ToastLength.Long).Show();
+                    Navigation.PushAsync(new Courier.CourierMainPage());
                 else
                     Toast.MakeText(Android.App.Application.Context, "Для менеджеров мобильное приложение не предусмотрено. Пожалуйста, зайдите с пк версии", ToastLength.Long).Show();
             }

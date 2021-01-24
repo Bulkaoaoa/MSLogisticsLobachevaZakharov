@@ -29,6 +29,9 @@
     <EmbeddedResource Update="Pages\Client\ClientMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Courier\CourierMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\RegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -36,6 +39,5 @@
 
   <ItemGroup>
     <Folder Include="Resourses\" />
-    <Folder Include="Pages\Courier\" />
   </ItemGroup>
 </Project>
