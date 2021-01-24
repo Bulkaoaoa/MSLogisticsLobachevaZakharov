@@ -70,6 +70,28 @@ namespace WebAppMsLogisctics.Models
                     return $"Доставить {DateOfDelivery.Value.ToShortDateString()} к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
             }
         }
+
+        public string DateTimeOfDeliveryForClient
+        {
+            get
+            {
+                if (StatusName != "Отменен" || StatusName != "Заказ выполнен")
+                {
+                    if (DateOfDelivery == null && TimeOfDelivery == null)
+                        return $"{CourierName} доставит до конца дня";
+                    else if (DateOfDelivery == null && TimeOfDelivery != null)
+                        return $"{CourierName} доставит сегодня к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
+                    else if (DateOfDelivery != null && TimeOfDelivery == null)
+                        return $"{CourierName} доставит {DateOfDelivery.Value.Date.ToShortDateString()} в течении дня";
+                    else
+                        return $"{CourierName} доставит {DateOfDelivery.Value.ToShortDateString()} к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
+                }
+                else if (StatusName == "Отменен")
+                    return "Ваш заказ не будет доставлен";
+                else
+                    return "Ваш заказ был доставлен";
+            }
+        }
         public Nullable<int> CourierId { get; set; }
         public string CourierName { get; set; }
         public Nullable<decimal> CourierRate { get; set; }
