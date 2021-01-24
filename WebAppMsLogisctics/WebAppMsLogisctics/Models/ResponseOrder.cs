@@ -20,7 +20,7 @@ namespace WebAppMsLogisctics.Models
                 // TODO:  Надо сделать средний подсчет рейтинга, знаю как делать, но чет хз
                 StatusName = order.OrderStatus.Name;
                 OrderPrice = order.OrderType.Price;
-
+                StatusId = order.StatusId;
                 DateOfDelivery = order.DateOfDelivery;
                 TimeOfDelivery = order.TimeOfDelivery;
             }
@@ -35,7 +35,7 @@ namespace WebAppMsLogisctics.Models
                 OrderPrice = order.OrderType.Price;
                 RulesOfStartLocation = order.Rule1.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
                 RulesOfEndLocation = order.Rule.ToList().ConvertAll(p => new ResponseRule(p)).ToList();
-
+                StatusId = order.StatusId;
                 DateOfDelivery = order.DateOfDelivery;
                 TimeOfDelivery = order.TimeOfDelivery;
 
@@ -75,7 +75,7 @@ namespace WebAppMsLogisctics.Models
         {
             get
             {
-                if (StatusName != "Отменен" || StatusName != "Заказ выполнен")
+                if (StatusId == 4)
                 {
                     if (DateOfDelivery == null && TimeOfDelivery == null)
                         return $"{CourierName} доставит до конца дня";
@@ -86,10 +86,12 @@ namespace WebAppMsLogisctics.Models
                     else
                         return $"{CourierName} доставит {DateOfDelivery.Value.ToShortDateString()} к {TimeOfDelivery.Value.Hours}:{TimeOfDelivery.Value.Minutes}";
                 }
-                else if (StatusName == "Отменен")
+                else if (StatusId == 0)
                     return "Ваш заказ не будет доставлен";
-                else
+                else if (StatusId == 5)
                     return "Ваш заказ был доставлен";
+                else
+                    return "Ваш заказ в обработке...";
             }
         }
         public Nullable<int> CourierId { get; set; }
