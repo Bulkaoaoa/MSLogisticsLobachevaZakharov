@@ -1,0 +1,54 @@
+﻿<Page x:Class="Desctop.Pages.ManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desctop.Pages"
+      xmlns:control="clr-namespace:Desctop.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManagerPage">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Ожидание выполнения">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Button x:Name="BtnUpdateNewOrder" IsEnabled="False" Click="BtnUpdateNewOrder_Click" HorizontalAlignment="Right" Margin="5">Новые заказы (0)</Button>
+                        <ItemsControl x:Name="IcNewOrder">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <control:NewOrderControl></control:NewOrderControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Отправлены на комплектацию">
+                <ScrollViewer>
+                        <ItemsControl x:Name="IcComplectationOrder">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <control:ComplectationOrderControl></control:ComplectationOrderControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Name="TI3" Header="Заказы у курьера">
+                <ScrollViewer>
+                    <ItemsControl x:Name="IcCourierOrder">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <control:NewOrderControl></control:NewOrderControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Выполненные заказы"></TabItem>
+        </TabControl>
+
+    </Grid>
+</Page>
