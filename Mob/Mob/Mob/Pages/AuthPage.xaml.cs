@@ -57,7 +57,7 @@ namespace Mob.Pages
             {
                 var task = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users?login={EntryLogin.Text}&password={EntryPassword.Text}").Result;
                 
-                Toast.MakeText(Android.App.Application.Context, "Все ок, мы нашли", ToastLength.Short).Show();
+                //Toast.MakeText(Android.App.Application.Context, "Все ок, мы нашли", ToastLength.Short).Show();
                 AppData.CurrUser = JsonConvert.DeserializeObject<User>(task);
                 if (SwitchRememberMe.IsToggled == true)//Если запомнить меня
                 {

@@ -7,15 +7,41 @@
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" >
-                        <Frame HasShadow="False" Margin="5" WidthRequest="70" HorizontalOptions="Center" HeightRequest="70" BackgroundColor="{StaticResource MainYellow}" CornerRadius="100">
+                        <Frame HasShadow="False" Margin="5,20,5,5" WidthRequest="70" HorizontalOptions="Center" HeightRequest="70" BackgroundColor="{StaticResource MainYellow}" CornerRadius="100">
                             <Image x:Name="MainImage" Source="{Binding Photo}" Margin="2"></Image>
                         </Frame>
                         <Label HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="{Binding FI}"></Label>
                     </StackLayout>
-                    <ListView HasUnevenRows="True" x:Name="LvMyOrders">
+                    <ListView  HasUnevenRows="True" x:Name="LvMyOrders" SeparatorColor="{StaticResource MainGrayDarkest}" IsGroupingEnabled="True" IsPullToRefreshEnabled="True"
+                              RefreshControlColor="{StaticResource MainYellowDark}" Refreshing="LvMyOrders_Refreshing" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource MainYellow}">
+                                        <Label Margin="5, 5, 5, 5" FontAttributes="Bold" FontSize="24" TextColor="White" Text="{Binding Name}" ></Label>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.GroupHeaderTemplate>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid></Grid>
+                                <ViewCell>
+                                    <Grid BackgroundColor="{StaticResource MainGrayDark}" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource MainGrayDarkest}">
+                                            <Label Text="Заказ № " Margin="5,5,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Id}" Margin="0,5,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                                        </StackLayout>
+                                        <StackLayout  Grid.Row="1" >
+                                            <Label Padding="0,5" Margin="5" VerticalOptions="Center" TextColor="{StaticResource MainYellow}" Text="{Binding Comment}" LineBreakMode="WordWrap"></Label>
+                                        </StackLayout>
+                                        <Label Grid.Row="2" Text="{Binding DateTimeOfDeliveryForClient}" LineBreakMode="WordWrap"></Label>
+                                    </Grid>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
