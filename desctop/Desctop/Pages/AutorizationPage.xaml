@@ -6,10 +6,11 @@
       xmlns:local="clr-namespace:Desctop.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AutorizationPage">
+      Title="Авторизация">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="20" HorizontalAlignment="Center">Авторизация</TextBlock>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock>Логин</TextBlock>
                 <TextBox x:Name="TbLogin" Width="150"></TextBox>

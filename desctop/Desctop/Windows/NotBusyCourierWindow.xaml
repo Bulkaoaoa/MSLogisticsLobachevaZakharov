@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="NotBusyCourierWindow" Height="134.5" Width="600" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
+        <TextBlock Cursor="Hand" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Red">X</TextBlock>
         <Border BorderThickness="1" BorderBrush="Black">
             <Grid VerticalAlignment="Center">
-                <TextBlock Cursor="Hand" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Red">X</TextBlock>
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" FontSize="20">Выберите курьера для заказа</TextBlock>
-                    <ComboBox Margin="5" Name="CbCouriers" DisplayMemberPath="FIO"></ComboBox>
-                    <Button x:Name="BtnOk" Click="BtnOk_Click" Margin="5">OK</Button>
+                    <ComboBox Background="{StaticResource MainGray}" Foreground="White" Margin="5" Name="CbCouriers" DisplayMemberPath="FIO"></ComboBox>
+                    <Button Background="{StaticResource MainGray}" Foreground="White" x:Name="BtnOk" Click="BtnOk_Click" Margin="5">OK</Button>
                 </StackPanel>
             </Grid>
         </Border>

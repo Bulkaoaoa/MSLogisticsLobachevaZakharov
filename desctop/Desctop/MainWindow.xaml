@@ -11,6 +11,12 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" Name="MainFrame"></Frame>
+        <Grid Background="{StaticResource MainGray}">
+            <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="40">MsLogistic</TextBlock>
+            <Button Click="BtnBack_Click" x:Name="BtnBack" HorizontalAlignment="Left" Width="150" Content="← Назад" Margin="15"></Button>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="3">
+            <Frame ContentRendered="MainFrame_ContentRendered" Grid.Row="1" NavigationUIVisibility="Hidden" Name="MainFrame"></Frame>
+        </Border>
     </Grid>
 </Window>

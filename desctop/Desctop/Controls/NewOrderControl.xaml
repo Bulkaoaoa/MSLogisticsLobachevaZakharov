@@ -34,9 +34,9 @@
                 <TextBlock FontWeight="Bold">Телефон клиента:</TextBlock>
                 <TextBlock Text="{Binding Client.User.Telephone}"></TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="BtnSelectCourier" Margin="5" Click="BtnSelectCourier_Click">Выбрать курьера для заказа</Button>
-                <Button x:Name="BtnToComplictation" Margin="5" Click="BtnToComplictation_Click">Отправить на комплектацию</Button>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Background="{StaticResource MainGray}" Foreground="White" Width="250" x:Name="BtnSelectCourier" Margin="5" Click="BtnSelectCourier_Click">Выбрать курьера для заказа</Button>
+                <Button Background="{StaticResource MainGray}" Foreground="White" Width="250" x:Name="BtnToComplictation" Margin="5" Click="BtnToComplictation_Click">Отправить на комплектацию</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
