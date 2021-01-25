@@ -47,7 +47,7 @@
                     </ItemsControl>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Выполненные заказы"></TabItem>
+            <!--<TabItem Header="Выполненные заказы"></TabItem>-->
         </TabControl>
 
     </Grid>
