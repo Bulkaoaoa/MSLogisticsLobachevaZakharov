@@ -21,7 +21,7 @@ namespace Mob.Pages
             InitializeComponent();
         }
 
-        private void BtnRegister_Clicked(object sender, EventArgs e)
+        private async void BtnRegister_Clicked(object sender, EventArgs e)
         {
             var errors = "";
             if (string.IsNullOrWhiteSpace(EntryLogin.Text)) errors += "Введите логин/почту \r\n";
@@ -43,8 +43,8 @@ namespace Mob.Pages
                 };
 
                 HttpClient client = new HttpClient();
-                var task = client.PostAsync("http://mslogisticslz.somee.com/api/Users", new StringContent(JsonConvert.SerializeObject(currUser),Encoding.UTF8,"application/json"));
-                Navigation.PopAsync();
+                var task = await client.PostAsync("http://mslogisticslz.somee.com/api/Users", new StringContent(JsonConvert.SerializeObject(currUser),Encoding.UTF8,"application/json"));
+                await Navigation.PopAsync();
             }
             else
                 Toast.MakeText(Android.App.Application.Context, errors, ToastLength.Long).Show();

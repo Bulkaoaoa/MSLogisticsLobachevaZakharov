@@ -49,13 +49,13 @@ namespace Mob.Pages
             //}
         }
 
-        private void BtnLogin_Clicked(object sender, EventArgs e)
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             try
             {
-                var task = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users?login={EntryLogin.Text}&password={EntryPassword.Text}").Result;
+                var task = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/Users?login={EntryLogin.Text}&password={EntryPassword.Text}");
                 
                 //Toast.MakeText(Android.App.Application.Context, "Все ок, мы нашли", ToastLength.Short).Show();
                 AppData.CurrUser = JsonConvert.DeserializeObject<User>(task);
@@ -65,9 +65,9 @@ namespace Mob.Pages
                     //Application.Current.SavePropertiesAsync();
                 }
                 if (AppData.CurrUser.RoleId == 1)
-                    Navigation.PushAsync(new Client.ClientMainPage());
+                    await Navigation.PushAsync(new Client.ClientMainPage());
                 else if (AppData.CurrUser.RoleId == 3) // навигировать на меню курьера
-                    Navigation.PushAsync(new Courier.CourierMainPage());
+                    await Navigation.PushAsync(new Courier.CourierMainPage());
                 else
                     Toast.MakeText(Android.App.Application.Context, "Для менеджеров мобильное приложение не предусмотрено. Пожалуйста, зайдите с пк версии", ToastLength.Long).Show();
             }

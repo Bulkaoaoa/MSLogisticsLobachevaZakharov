@@ -21,17 +21,22 @@ namespace Mob.Pages.Client
             InitializeComponent();
             try
             {
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                var task = client.GetStringAsync("http://mslogisticslz.somee.com/api/OrderTypes");
-                var listOfOrderTypes = JsonConvert.DeserializeObject<List<OrderType>>(task.Result);
-                PickerTypeOfOrder.ItemsSource = listOfOrderTypes.ToList();
+                UpdatePickerOrderTypes();
             }
             catch 
             {
                 Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
 
             }
+        }
+
+        private async void UpdatePickerOrderTypes()
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var task = await client.GetStringAsync("http://mslogisticslz.somee.com/api/OrderTypes");
+            var listOfOrderTypes = JsonConvert.DeserializeObject<List<OrderType>>(task);
+            PickerTypeOfOrder.ItemsSource = listOfOrderTypes.ToList();
         }
 
         private void SwitchForDateTime_Toggled(object sender, ToggledEventArgs e)
