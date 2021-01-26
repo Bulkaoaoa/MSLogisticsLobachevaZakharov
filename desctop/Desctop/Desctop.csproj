@@ -71,6 +71,9 @@
     <Compile Include="Controls\ComplectationOrderControl.xaml.cs">
       <DependentUpon>ComplectationOrderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CourierOrderControl.xaml.cs">
+      <DependentUpon>CourierOrderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <DependentUpon>NotBusyCourierWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\ComplectationOrderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CourierOrderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

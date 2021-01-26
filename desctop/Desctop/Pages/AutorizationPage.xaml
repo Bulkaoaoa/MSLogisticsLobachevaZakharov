@@ -19,7 +19,7 @@
                 <TextBlock>Пароль</TextBlock>
                 <PasswordBox x:Name="PbPassword" Width="150"></PasswordBox>
             </StackPanel>
-            <Button Click="BtnLogin_Click" x:Name="BtnLogin">Войти</Button>
+            <Button IsDefault="True" Click="BtnLogin_Click" x:Name="BtnLogin">Войти</Button>
         </StackPanel>
     </Grid>
 </Page>

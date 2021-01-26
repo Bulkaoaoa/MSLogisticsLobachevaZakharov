@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\App.xaml
-6-1893452004
+7774589826
 2-1436223632
-311602748608
+32-1576270316
 191737518197
-Controls\ComplectationOrderControl.xaml;Controls\NewOrderControl.xaml;MainWindow.xaml;Pages\AutorizationPage.xaml;Pages\ManagerPage.xaml;Windows\NotBusyCourierWindow.xaml;
+Controls\ComplectationOrderControl.xaml;Controls\CourierOrderControl.xaml;Controls\NewOrderControl.xaml;MainWindow.xaml;Pages\AutorizationPage.xaml;Pages\ManagerPage.xaml;Windows\NotBusyCourierWindow.xaml;
 
 True
 

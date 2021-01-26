@@ -12,7 +12,7 @@
             <Grid VerticalAlignment="Center">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" FontSize="20">Выберите курьера для заказа</TextBlock>
-                    <ComboBox Background="{StaticResource MainGray}" Foreground="White" Margin="5" Name="CbCouriers" DisplayMemberPath="FIO"></ComboBox>
+                    <ComboBox Foreground="Black" Background="{StaticResource MainGray}"  Margin="5" Name="CbCouriers" DisplayMemberPath="FIO"></ComboBox>
                     <Button Background="{StaticResource MainGray}" Foreground="White" x:Name="BtnOk" Click="BtnOk_Click" Margin="5">OK</Button>
                 </StackPanel>
             </Grid>

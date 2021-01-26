@@ -25,6 +25,7 @@ namespace Desctop.Pages
         public AutorizationPage()
         {
             InitializeComponent();
+            TbLogin.Focus();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)

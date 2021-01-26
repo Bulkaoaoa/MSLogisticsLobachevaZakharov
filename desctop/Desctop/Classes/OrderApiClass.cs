@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Desctop.Classes
 {
-    public class OrderApi
+    public partial  class OrderApi
     {
         public int Id { get; set; }
         public string Comment { get; set; }
         public string Code { get; set; }
         public object StatusName { get; set; }
+        public object TypeName { get; set; }
         public int ClientId { get; set; }
         public string ClientName { get; set; }
         public int StartLocation { get; set; }

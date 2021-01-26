@@ -4,35 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Desctop.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Grid>
         <StackPanel x:Name="MainStack">
+            <Grid>
+                <TextBlock TextWrapping="Wrap" FontSize="20">
+                <Run>Из</Run>
+                <Run Text="{Binding StartLocationName}"></Run>
+                <Run>До</Run>
+                <Run Text="{Binding EndLocationName}"></Run>
+                </TextBlock>
+            </Grid>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="20">Из</TextBlock>
-                <TextBlock FontSize="20" Text="{Binding StartLocationName}"></TextBlock>
-                <TextBlock FontSize="20">До</TextBlock>
-                <TextBlock FontSize="20" Text="{Binding EndLocationName}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold" FontSize="20">ФИО Клиента:</TextBlock>
-                <TextBlock FontSize="20" Text="{Binding Client.FIO}"></TextBlock>
+                <TextBlock FontWeight="Bold" FontSize="20">Имя Клиента:</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding ClientName}"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontWeight="Bold">Тип:</TextBlock>
-                <TextBlock Text="{Binding OrderType.Name}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding TypeName}"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontWeight="Bold">Код для получения:</TextBlock>
-                <TextBlock Text="{Binding Code}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Code}"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold">Комментарий:</TextBlock>
-                <TextBlock Text="{Binding Comment}"></TextBlock>
+                <TextBlock FontWeight="Bold">Время доставки:</TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding DateTimeOfDeliveryForCourier}"></TextBlock>
             </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontWeight="Bold">Комментарий:</TextBlock>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Comment}"></TextBlock>
+            </Grid>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontWeight="Bold">Телефон клиента:</TextBlock>
-                <TextBlock Text="{Binding Client.User.Telephone}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Client.User.Telephone}"></TextBlock>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button Background="{StaticResource MainGray}" Foreground="White" Width="250" x:Name="BtnSelectCourier" Margin="5" Click="BtnSelectCourier_Click">Выбрать курьера для заказа</Button>
