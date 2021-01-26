@@ -75,5 +75,10 @@ namespace Mob.Pages.Client
             UpdateOrders();
             LvMyOrders.IsRefreshing = false;
         }
+
+        private void BtnAddOrder_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Pages.Client.CreateOrderPage());
+        }
     }
 }

@@ -6,17 +6,12 @@
         <ScrollView HorizontalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="FillAndExpand">
                 <Entry x:Name="EntryCode" HorizontalOptions="FillAndExpand" Placeholder="Коды для доступа"></Entry>
-                <StackLayout HorizontalOptions="FillAndExpand">
-                    <Label HorizontalOptions="Start" Text="Откуда доставить"></Label>
-                    <Picker x:Name="PickerStartLocation" HorizontalOptions="FillAndExpand" ItemDisplayBinding="Address"></Picker>
-                </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand">
-                    <Label HorizontalOptions="Start" Text="Куда доставить"></Label>
-                    <Picker x:Name="PickerEndLocation" HorizontalOptions="FillAndExpand" ItemDisplayBinding="Address"></Picker>
-                </StackLayout>
+                <Entry x:Name="EntryStartLocation" HorizontalOptions="FillAndExpand" Placeholder="Откуда доставить?"></Entry>
+                <Entry x:Name="EntryEndLocation" HorizontalOptions="FillAndExpand" Placeholder="Куда доставить?"></Entry>
+                <Editor x:Name="EditorComment" HorizontalOptions="FillAndExpand" Placeholder="Комментарий к заказу"></Editor>
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label HorizontalOptions="Start" Text="Тип заказа"></Label>
-                    <Picker x:Name="PickerTypeOfOrder" HorizontalOptions="FillAndExpand" ItemDisplayBinding="Name"></Picker>
+                    <Picker Title="Выберете категорию доставки" x:Name="PickerTypeOfOrder" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding NamePrice}"></Picker>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Switch x:Name="SwitchForDateTime"  Toggled="SwitchForDateTime_Toggled" VerticalOptions="Center"></Switch>

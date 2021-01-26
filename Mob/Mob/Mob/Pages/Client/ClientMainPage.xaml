@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mob.Pages.Client.ClientMainPage" Title="Мои заказы" NavigationPage.BackButtonTitle="🚪" Disappearing="ContentPage_Disappearing">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" >
@@ -45,6 +45,7 @@
                     </ListView>
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
+            <Button HeightRequest="50" WidthRequest="50" HorizontalOptions="End" CornerRadius="100" VerticalOptions="End" x:Name="BtnAddOrder" Clicked="BtnAddOrder_Clicked" Text="+"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
