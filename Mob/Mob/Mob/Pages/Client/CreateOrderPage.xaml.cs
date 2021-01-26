@@ -27,7 +27,7 @@ namespace Mob.Pages.Client
                 var listOfOrderTypes = JsonConvert.DeserializeObject<List<OrderType>>(task.Result);
                 PickerTypeOfOrder.ItemsSource = listOfOrderTypes.ToList();
             }
-            catch (Exception)
+            catch 
             {
                 Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
 
@@ -69,21 +69,21 @@ namespace Mob.Pages.Client
                     {
                         Address = EntryStartLocation.Text
                     };
-                    var startLocTast = client.PostAsync("http://mslogisticslz.somee.com/api/Locations",
+                    var startLocTast = await client.PostAsync("http://mslogisticslz.somee.com/api/Locations",
                         new StringContent(JsonConvert.SerializeObject(newStartLocation),
                         Encoding.UTF8, "application/json"));
 
-                    newStartLocation = JsonConvert.DeserializeObject<Location>(startLocTast.Result.Content.ReadAsStringAsync().Result);
+                    newStartLocation = JsonConvert.DeserializeObject<Location>(startLocTast.Content.ReadAsStringAsync().Result);
 
                     var newEndLocation = new Location()
                     {
                         Address = EntryEndLocation.Text
                     };
-                    var endLocTast = client.PostAsync("http://mslogisticslz.somee.com/api/Locations",
+                    var endLocTast = await client.PostAsync("http://mslogisticslz.somee.com/api/Locations",
                         new StringContent(JsonConvert.SerializeObject(newEndLocation),
                         Encoding.UTF8, "application/json"));
 
-                    newEndLocation = JsonConvert.DeserializeObject<Location>(endLocTast.Result.Content.ReadAsStringAsync().Result);
+                    newEndLocation = JsonConvert.DeserializeObject<Location>(endLocTast.Content.ReadAsStringAsync().Result);
 
                     Nullable<TimeSpan> timeSpanOfDelivery;
                     if (TimePDateOfDelivery.Time == new TimeSpan(0,0,0))
@@ -111,10 +111,10 @@ namespace Mob.Pages.Client
                         TimeOfDelivery = timeSpanOfDelivery
                     };
                     var content = JsonConvert.SerializeObject(newOrder);
-                    var task = client.PostAsync("http://mslogisticslz.somee.com/api/Orders", new StringContent(content, Encoding.UTF8, "application/json"));
+                    var task = await client.PostAsync("http://mslogisticslz.somee.com/api/Orders", new StringContent(content, Encoding.UTF8, "application/json"));
                     await Navigation.PopAsync();
                 }
-                catch (Exception)
+                catch 
                 {
                     Toast.MakeText(Android.App.Application.Context, "К сожалению случилась ошибка работы с базой данных, повторите позже", ToastLength.Long).Show();
                 }

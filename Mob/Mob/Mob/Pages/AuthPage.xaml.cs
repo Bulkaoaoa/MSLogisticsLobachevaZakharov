@@ -71,7 +71,7 @@ namespace Mob.Pages
                 else
                     Toast.MakeText(Android.App.Application.Context, "Для менеджеров мобильное приложение не предусмотрено. Пожалуйста, зайдите с пк версии", ToastLength.Long).Show();
             }
-            catch (Exception)
+            catch 
             {
                 Toast.MakeText(Android.App.Application.Context, "Такого пользователя не существует, пожалуйста, зарегистрируйтесь или свяжитесь с тех. поддержкой", ToastLength.Long).Show();
             }

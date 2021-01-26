@@ -19,31 +19,31 @@ namespace Mob.Pages.Courier
         public MyOrdersCourierPage()
         {
             InitializeComponent();
-            Timer refreshTimer = new Timer();
-            refreshTimer.Interval = 30000;
-            refreshTimer.Elapsed += RefreshTimer_Elapsed;
-            refreshTimer.Start();
+            //Timer refreshTimer = new Timer();
+            //refreshTimer.Interval = 30000;
+            //refreshTimer.Elapsed += RefreshTimer_Elapsed;
+            //refreshTimer.Start();
             UpdateLV();
         }
 
-        private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            UpdateLV();
-        }
+        //private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    UpdateLV();
+        //}
 
-        private void UpdateLV()
+        private async void UpdateLV()
         {
             LvMyOrders.IsRefreshing = true;
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                var responseCourierOrders = client.GetStringAsync($"{AppData.CurrUser.Id}");
-                var listOfCouriersOrders = JsonConvert.DeserializeObject<List<Order>>(responseCourierOrders.Result);
+                var responseCourierOrders = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/GetCurrentCourierWorkedOrder?courierId={AppData.CurrUser.Id}");
+                var listOfCouriersOrders = JsonConvert.DeserializeObject<List<Order>>(responseCourierOrders);
                 // может падать из-за пустых полей, проверять на HasValue?
                 LvMyOrders.ItemsSource = listOfCouriersOrders.ToList().OrderByDescending(p => p.DateOfDelivery).ToList();
             }
-            catch (Exception)
+            catch
             {
                 Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
             }
@@ -53,6 +53,30 @@ namespace Mob.Pages.Courier
         }
         private void LvMyOrders_Refreshing(object sender, EventArgs e)
         {
+            UpdateLV();
+        }
+
+        private async void SwipeItemAccomplished_Invoked(object sender, EventArgs e)
+        {
+            //TODO: Сделать Put на исправление статуса
+            var currItem = (sender as SwipeItem).BindingContext as Order;
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var currOrderResponse = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}");
+                var currOrder = JsonConvert.DeserializeObject<Order>(currOrderResponse);
+
+                currOrder.StatusId = 5;
+                var task = await client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currOrder.Id}",
+                    new StringContent(JsonConvert.SerializeObject(currOrder), Encoding.UTF8, "application/json"));
+            }
+            catch
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+            }
             UpdateLV();
         }
     }

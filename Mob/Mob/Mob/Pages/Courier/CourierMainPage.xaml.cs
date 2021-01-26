@@ -21,12 +21,12 @@ namespace Mob.Pages.Courier
 
         private void BtnMyOrders_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new Pages.Courier.MyOrdersCourierPage());
         }
 
         private void BtnSearchOrders_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new Pages.Courier.FreeOrdersForCourierPage());
         }
     }
 }
