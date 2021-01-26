@@ -28,6 +28,7 @@ namespace Mob.Classes
         public Nullable<decimal> ClientRate { get; set; }
         public int ManagerId { get; set; }
         public int OrderTypeId { get; set; }
+        public string OrderTypeName { get; set; }
         public decimal OrderPrice { get; set; }
         public int StatusId { get; set; }
     }
