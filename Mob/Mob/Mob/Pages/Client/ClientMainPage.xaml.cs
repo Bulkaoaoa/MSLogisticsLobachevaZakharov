@@ -27,6 +27,16 @@ namespace Mob.Pages.Client
             //refreshTimer.Interval = 30000;
             //refreshTimer.Elapsed += RefreshTimer_Elapsed;
             //refreshTimer.Start();
+
+            Device.StartTimer(new TimeSpan(0, 0, 10), () =>
+              {
+                  Device.BeginInvokeOnMainThread(() =>
+                  {
+                      UpdateOrders();
+                  });
+                  return true;
+              });
+            
             UpdateOrders();
         }
 
