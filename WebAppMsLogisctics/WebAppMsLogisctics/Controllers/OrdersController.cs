@@ -24,7 +24,7 @@ namespace WebAppMsLogisctics.Controllers
         }
 
         // GET: api/Orders/5
-        [ResponseType(typeof(Order))]
+        [ResponseType(typeof(ResponseOrder))]
         public IHttpActionResult GetOrder(int id)
         {
             Order order = db.Order.Find(id);
@@ -33,7 +33,7 @@ namespace WebAppMsLogisctics.Controllers
                 return NotFound();
             }
 
-            return Ok(order);
+            return Ok(new ResponseOrder(order));
         }
         // GET: get Orders by CLients id (For Client Look)
         [ResponseType(typeof(List<ResponseOrder>)), Route("api/OrdersByUser")]

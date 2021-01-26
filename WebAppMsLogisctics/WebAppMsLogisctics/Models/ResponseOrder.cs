@@ -8,6 +8,23 @@ namespace WebAppMsLogisctics.Models
 {
     public class ResponseOrder
     {
+        public ResponseOrder(Order order)
+        {
+            Id = order.Id;
+            Comment = order.Comment;
+            Code = order.Code;
+            StatusId = order.StatusId;
+            ClientId = order.ClientId;
+            StartLocation = order.StartLocation;
+            EndLocation = order.EndLocation;
+            CourierId = order.CourierId;
+            CourierRate = order.CourierRate;
+            ClientRate = order.ClientRate;
+            ManagerId = order.ManagerId;
+            OrderTypeId = order.OrderTypeId;
+            DateOfDelivery = order.DateOfDelivery;
+            TimeOfDelivery = order.TimeOfDelivery;
+        }
         public ResponseOrder(Order order, bool IsLookForUser)
         {
             if (IsLookForUser == true)
