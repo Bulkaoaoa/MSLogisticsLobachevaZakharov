@@ -57,7 +57,7 @@ namespace WebAppMsLogisctics.Models
                 DateOfDelivery = order.DateOfDelivery;
                 TimeOfDelivery = order.TimeOfDelivery;
                 OrderTypeId = order.OrderTypeId;
-                OrderTypeName = order.OrderType.Name;
+                OrderTypeName = new ResponseOrderType(order.OrderType).Name;
 
             }
         }
