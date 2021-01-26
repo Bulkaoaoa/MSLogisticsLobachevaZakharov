@@ -19,6 +19,22 @@ namespace Mob.Pages.Courier
         public FreeOrdersForCourierPage()
         {
             InitializeComponent();
+            try
+            {
+                Device.StartTimer(new TimeSpan(0, 0, 30), () =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            UpdateLv();
+                        });
+                        return true;
+                    });
+            }
+            catch
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
+
+            }
             UpdateLv();
         }
 
@@ -65,7 +81,7 @@ namespace Mob.Pages.Courier
             }
             catch
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
             }
 
             UpdateLv();

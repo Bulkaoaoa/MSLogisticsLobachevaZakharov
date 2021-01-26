@@ -19,17 +19,25 @@ namespace Mob.Pages.Courier
         public MyOrdersCourierPage()
         {
             InitializeComponent();
-            //Timer refreshTimer = new Timer();
-            //refreshTimer.Interval = 30000;
-            //refreshTimer.Elapsed += RefreshTimer_Elapsed;
-            //refreshTimer.Start();
+            try
+            {
+                Device.StartTimer(new TimeSpan(0, 0, 30), () =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            UpdateLV();
+                        });
+                        return true;
+                    });
+            }
+            catch 
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
+
+            }
             UpdateLV();
         }
 
-        //private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
-        //{
-        //    UpdateLV();
-        //}
 
         private async void UpdateLV()
         {
@@ -75,7 +83,7 @@ namespace Mob.Pages.Courier
             }
             catch
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
             }
             UpdateLV();
         }

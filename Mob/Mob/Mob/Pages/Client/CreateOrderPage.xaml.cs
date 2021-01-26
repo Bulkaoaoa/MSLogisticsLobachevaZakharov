@@ -25,7 +25,7 @@ namespace Mob.Pages.Client
             }
             catch 
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
 
             }
         }

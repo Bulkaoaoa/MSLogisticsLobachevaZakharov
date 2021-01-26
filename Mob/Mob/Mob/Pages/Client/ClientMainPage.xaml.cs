@@ -23,27 +23,25 @@ namespace Mob.Pages.Client
         {
             InitializeComponent();
             this.BindingContext = AppData.CurrUser;
-            //Timer refreshTimer = new Timer();
-            //refreshTimer.Interval = 30000;
-            //refreshTimer.Elapsed += RefreshTimer_Elapsed;
-            //refreshTimer.Start();
 
-            Device.StartTimer(new TimeSpan(0, 0, 10), () =>
-              {
-                  Device.BeginInvokeOnMainThread(() =>
-                  {
-                      UpdateOrders();
-                  });
-                  return true;
-              });
-            
+            try
+            {
+                Device.StartTimer(new TimeSpan(0, 0, 30), () =>
+                     {
+                         Device.BeginInvokeOnMainThread(() =>
+                         {
+                             UpdateOrders();
+                         });
+                         return true;
+                     });
+            }
+            catch 
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
+            }
+
             UpdateOrders();
         }
-
-        //private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
-        //{
-        //    UpdateOrders();
-        //}
 
         private void ContentPage_Disappearing(object sender, EventArgs e)
         {
@@ -66,7 +64,7 @@ namespace Mob.Pages.Client
                     var listOfMyOrders = JsonConvert.DeserializeObject<List<Order>>(task);
                     if (listOfMyOrders.Count == 0)
                     {
-                        Toast.MakeText(Android.App.Application.Context, "У вас ещё нет ни одного заказа, нажимайте скорее вот эту желтую кнопку справа снизу ;)", ToastLength.Long);
+                        Toast.MakeText(Android.App.Application.Context, "У вас ещё нет ни одного заказа, нажимайте скорее вот эту желтую кнопку справа снизу ;)", ToastLength.Long).Show();
                     }
                     else
                     {
@@ -75,11 +73,11 @@ namespace Mob.Pages.Client
                     }
                 }
                 else
-                    Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                    Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
             }
             catch 
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
 
             }
 
@@ -132,7 +130,7 @@ namespace Mob.Pages.Client
             }
             catch 
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
 
             }
 
