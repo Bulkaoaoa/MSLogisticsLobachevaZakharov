@@ -58,6 +58,16 @@ namespace WebAppMsLogisctics.Controllers
             return Ok(currList);
         }
 
+        [ResponseType(typeof(List<ResponseOrder>)), Route("api/GetCurrentCurierWorkedOrder")]
+        public IHttpActionResult GetCurrentCurierWorkedOrder(int courierId)
+        {
+            List<Order> currOrderList = db.Order.ToList().Where(p => p.CourierId == courierId && p.StatusId==4).ToList();
+            //Тут можно сделать проверку на нулевость листа и отправлять 404, но в общем если он будет пустую возвращать, то без разницы
+            //Если хочешь, можешь прикрутить. Там обычный if
+            var currList = currOrderList.ConvertAll(p => new ResponseOrder(p, false)).ToList();
+            return Ok(currList);
+        }
+
         [ResponseType(typeof(List<ResponseOrder>)), Route("api/OrderWithCourier")]
         public IHttpActionResult GetOrderWithCourier()
         {
