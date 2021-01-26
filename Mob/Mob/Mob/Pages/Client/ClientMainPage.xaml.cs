@@ -84,13 +84,27 @@ namespace Mob.Pages.Client
         private void LeftSwipeItem_Invoked(object sender, EventArgs e)
         {
             var currItem = (sender as SwipeItem).BindingContext as Order;
-            currItem.StatusId = 0;
             HttpClient client = new HttpClient();
-            var task = client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}",
-                new StringContent(JsonConvert.SerializeObject(currItem),
-                Encoding.UTF8, "application/json"));
-            UpdateOrders();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
+            var currOrderResponse = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}");
+            var currOrder = JsonConvert.DeserializeObject<Order>(currOrderResponse.Result);
+            if (currOrder.StatusId == 1 || currOrder.StatusId == 2 || currOrder.StatusId == 3)
+            {
+                currOrder.StatusId = 0;
+                var task = client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}",
+                    new StringContent(JsonConvert.SerializeObject(currOrder),
+                    Encoding.UTF8, "application/json"));
+                UpdateOrders();
+            }
+            else
+                Toast.MakeText(Android.App.Application.Context, "Вы не можете отменить эти заказы", ToastLength.Long).Show();
+
+        }
+
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            UpdateOrders();
         }
     }
 }

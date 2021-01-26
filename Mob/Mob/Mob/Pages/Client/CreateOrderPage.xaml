@@ -8,7 +8,7 @@
                 <Entry x:Name="EntryCode" HorizontalOptions="FillAndExpand" Placeholder="Коды для доступа"></Entry>
                 <Entry x:Name="EntryStartLocation" HorizontalOptions="FillAndExpand" Placeholder="Откуда доставить?"></Entry>
                 <Entry x:Name="EntryEndLocation" HorizontalOptions="FillAndExpand" Placeholder="Куда доставить?"></Entry>
-                <Editor x:Name="EditorComment" HorizontalOptions="FillAndExpand" Placeholder="Комментарий к заказу"></Editor>
+                <Editor HeightRequest="110" x:Name="EditorComment" HorizontalOptions="FillAndExpand" Placeholder="Комментарий к заказу"></Editor>
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label HorizontalOptions="Start" Text="Тип заказа"></Label>
                     <Picker Title="Выберете категорию доставки" x:Name="PickerTypeOfOrder" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding NamePrice}"></Picker>
@@ -17,15 +17,15 @@
                     <Switch x:Name="SwitchForDateTime"  Toggled="SwitchForDateTime_Toggled" VerticalOptions="Center"></Switch>
                     <Label  Text="Доставить ко времени?" VerticalOptions="Center"></Label>
                 </StackLayout>
-                <StackLayout x:Name="StackWithDateOFDelivery" HorizontalOptions="FillAndExpand">
+                <StackLayout IsVisible="False" x:Name="StackWithDateOFDelivery" HorizontalOptions="FillAndExpand">
                     <Label HorizontalOptions="Start" Text="Дата доставки"></Label>
                     <DatePicker x:Name="DatePDateOfDelivery"></DatePicker>
                 </StackLayout>
-                <StackLayout x:Name="StackWithTimeOFDelivery" HorizontalOptions="FillAndExpand">
+                <StackLayout IsVisible="False" x:Name="StackWithTimeOFDelivery" HorizontalOptions="FillAndExpand">
                     <Label HorizontalOptions="Start" Text="Дата доставки"></Label>
                     <TimePicker x:Name="TimePDateOfDelivery"></TimePicker>
                 </StackLayout>
-                <Button HorizontalOptions="FillAndExpand" x:Name="BtnAddOrder" Clicked="BtnAddOrder_Clicked"></Button>
+                <Button Text="Оформить" HorizontalOptions="FillAndExpand" x:Name="BtnAddOrder" Clicked="BtnAddOrder_Clicked"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

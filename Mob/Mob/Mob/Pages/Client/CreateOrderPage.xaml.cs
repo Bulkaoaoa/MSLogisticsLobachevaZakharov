@@ -78,13 +78,13 @@ namespace Mob.Pages.Client
                     newEndLocation = JsonConvert.DeserializeObject<Location>(endLocTast.Result.Content.ReadAsStringAsync().Result);
 
                     Nullable<TimeSpan> timeSpanOfDelivery;
-                    if (TimePDateOfDelivery.Time == DateTime.Now.TimeOfDay)
+                    if (TimePDateOfDelivery.Time == new TimeSpan(0,0,0))
                         timeSpanOfDelivery = null;
                     else
                         timeSpanOfDelivery = TimePDateOfDelivery.Time;
 
                     Nullable<DateTime> dateTimeOfDelivery;
-                    if (DatePDateOfDelivery.Date == DateTime.Now)
+                    if (DatePDateOfDelivery.Date.DayOfYear == DateTime.Now.DayOfYear)
                         dateTimeOfDelivery = null;
                     else
                         dateTimeOfDelivery = DatePDateOfDelivery.Date;
