@@ -80,5 +80,17 @@ namespace Mob.Pages.Client
         {
             Navigation.PushAsync(new Pages.Client.CreateOrderPage());
         }
+
+        private void LeftSwipeItem_Invoked(object sender, EventArgs e)
+        {
+            var currItem = (sender as SwipeItem).BindingContext as Order;
+            currItem.StatusId = 0;
+            HttpClient client = new HttpClient();
+            var task = client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}",
+                new StringContent(JsonConvert.SerializeObject(currItem),
+                Encoding.UTF8, "application/json"));
+            UpdateOrders();
+
+        }
     }
 }
