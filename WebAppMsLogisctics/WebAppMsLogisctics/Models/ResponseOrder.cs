@@ -35,6 +35,7 @@ namespace WebAppMsLogisctics.Models
                 if (order.Courier != null)
                     CourierName = new ResponseCourier(order.Courier, false).CourierName;
                 // TODO:  Надо сделать средний подсчет рейтинга, знаю как делать, но чет хз
+                TypeName = order.OrderType.Name;
                 StatusName = order.OrderStatus.Name;
                 OrderPrice = order.OrderType.Price;
                 StatusId = order.StatusId;
@@ -62,6 +63,7 @@ namespace WebAppMsLogisctics.Models
         public string Comment { get; set; }
         public string Code { get; set; }
         public string StatusName { get; set; }
+        public string TypeName { get; set; }
         public int ClientId { get; set; }
         public string ClientName { get; set; }
         public int StartLocation { get; set; }
