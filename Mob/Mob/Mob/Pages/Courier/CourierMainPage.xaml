@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mob.Pages.Courier.CourierMainPage">
+             x:Class="Mob.Pages.Courier.CourierMainPage" Title="Основное меню">
     <ContentPage.Content>
-        <Grid></Grid>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <Button Text="Мои заказы" x:Name="BtnMyOrders" Clicked="BtnMyOrders_Clicked"></Button>
+            <Button Text="Поиск заказов" x:Name="BtnSearchOrders" Clicked="BtnSearchOrders_Clicked"></Button>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

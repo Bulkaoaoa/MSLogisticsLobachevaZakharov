@@ -16,5 +16,15 @@ namespace Mob.Pages.Courier
         {
             InitializeComponent();
         }
+
+        private void BtnMyOrders_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSearchOrders_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
