@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using Android.Widget;
 using Mob.Classes;
 using Mob.Pages;
@@ -22,6 +23,15 @@ namespace Mob.Pages.Client
         {
             InitializeComponent();
             this.BindingContext = AppData.CurrUser;
+            Timer refreshTimer = new Timer();
+            refreshTimer.Interval = 30000;
+            refreshTimer.Elapsed += RefreshTimer_Elapsed;
+            refreshTimer.Start();
+            UpdateOrders();
+        }
+
+        private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
             UpdateOrders();
         }
 
@@ -36,24 +46,32 @@ namespace Mob.Pages.Client
         {
             LvMyOrders.IsRefreshing = true;
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var task = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/OrdersByUser?clientId={AppData.CurrUser.Id}");
-            if (task.Length != 0)
+            try
             {
-                var listOfMyOrders = JsonConvert.DeserializeObject<List<Order>>(task);
-                if (listOfMyOrders.Count == 0)
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var task = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/OrdersByUser?clientId={AppData.CurrUser.Id}");
+                if (task.Length != 0)
                 {
-                    //TODO: Надо будет сделать картинку для пустого списка заказов
+                    var listOfMyOrders = JsonConvert.DeserializeObject<List<Order>>(task);
+                    if (listOfMyOrders.Count == 0)
+                    {
+                        //TODO: Надо будет сделать картинку для пустого списка заказов
+                    }
+                    else
+                    {
+                        var groupsOfOrders = listOfMyOrders.ToList().Where(p => p.DateOfDelivery.HasValue == true && p.DateOfDelivery.Value.Date >= DateTime.Now.Date || p.DateOfDelivery.HasValue == false).GroupBy(p => p.StatusName).Select(p => new Grouping<string, Order>(p.Key, p));
+                        LvMyOrders.ItemsSource = new ObservableCollection<Grouping<string, Order>>(groupsOfOrders);
+                    }
                 }
                 else
-                {
-                    var groupsOfOrders = listOfMyOrders.ToList().Where(p => p.DateOfDelivery.HasValue == true && p.DateOfDelivery.Value.Date >= DateTime.Now.Date || p.DateOfDelivery.HasValue == false).GroupBy(p => p.StatusName).Select(p => new Grouping<string, Order>(p.Key, p));
-                    LvMyOrders.ItemsSource = new ObservableCollection<Grouping<string, Order>>(groupsOfOrders);
-                }
+                    Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
             }
-            else
+            catch (Exception)
+            {
                 Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+
+            }
 
             LvMyOrders.IsRefreshing = false;
         }
@@ -83,22 +101,30 @@ namespace Mob.Pages.Client
 
         private void LeftSwipeItem_Invoked(object sender, EventArgs e)
         {
-            var currItem = (sender as SwipeItem).BindingContext as Order;
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-            var currOrderResponse = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}");
-            var currOrder = JsonConvert.DeserializeObject<Order>(currOrderResponse.Result);
-            if (currOrder.StatusId == 1 || currOrder.StatusId == 2 || currOrder.StatusId == 3)
+            try
             {
-                currOrder.StatusId = 0;
-                var task = client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}",
-                    new StringContent(JsonConvert.SerializeObject(currOrder),
-                    Encoding.UTF8, "application/json"));
-                UpdateOrders();
+                var currItem = (sender as SwipeItem).BindingContext as Order;
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var currOrderResponse = client.GetStringAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}");
+                var currOrder = JsonConvert.DeserializeObject<Order>(currOrderResponse.Result);
+                if (currOrder.StatusId == 1 || currOrder.StatusId == 2 || currOrder.StatusId == 3)
+                {
+                    currOrder.StatusId = 0;
+                    var task = client.PutAsync($"http://mslogisticslz.somee.com/api/Orders/{currItem.Id}",
+                        new StringContent(JsonConvert.SerializeObject(currOrder),
+                        Encoding.UTF8, "application/json"));
+                    UpdateOrders();
+                }
+                else
+                    Toast.MakeText(Android.App.Application.Context, "Вы не можете отменить эти заказы", ToastLength.Long).Show();
             }
-            else
-                Toast.MakeText(Android.App.Application.Context, "Вы не можете отменить эти заказы", ToastLength.Long).Show();
+            catch (Exception)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+
+            }
 
         }
 

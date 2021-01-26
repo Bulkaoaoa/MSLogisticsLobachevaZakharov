@@ -19,11 +19,19 @@ namespace Mob.Pages.Client
         public CreateOrderPage()
         {
             InitializeComponent();
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var task = client.GetStringAsync("http://mslogisticslz.somee.com/api/OrderTypes");
-            var listOfOrderTypes = JsonConvert.DeserializeObject<List<OrderType>>(task.Result);
-            PickerTypeOfOrder.ItemsSource = listOfOrderTypes.ToList();
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var task = client.GetStringAsync("http://mslogisticslz.somee.com/api/OrderTypes");
+                var listOfOrderTypes = JsonConvert.DeserializeObject<List<OrderType>>(task.Result);
+                PickerTypeOfOrder.ItemsSource = listOfOrderTypes.ToList();
+            }
+            catch (Exception)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+
+            }
         }
 
         private void SwitchForDateTime_Toggled(object sender, ToggledEventArgs e)

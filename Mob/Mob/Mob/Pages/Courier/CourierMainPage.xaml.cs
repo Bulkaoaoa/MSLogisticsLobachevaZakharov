@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mob.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Mob.Pages.Courier
         public CourierMainPage()
         {
             InitializeComponent();
+            this.BindingContext = AppData.CurrUser;
         }
 
         private void BtnMyOrders_Clicked(object sender, EventArgs e)

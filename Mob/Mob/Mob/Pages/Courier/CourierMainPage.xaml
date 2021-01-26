@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mob.Pages.Courier.CourierMainPage" Title="Основное меню">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-            <Button Text="Мои заказы" x:Name="BtnMyOrders" Clicked="BtnMyOrders_Clicked"></Button>
-            <Button Text="Поиск заказов" x:Name="BtnSearchOrders" Clicked="BtnSearchOrders_Clicked"></Button>
-        </StackLayout>
+        <Grid>
+            <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="Start">
+                <Frame HasShadow="False" Margin="5,20,5,5" WidthRequest="70" HorizontalOptions="Center" HeightRequest="70" BackgroundColor="{StaticResource MainYellow}" CornerRadius="100">
+                    <Image x:Name="MainImage" Source="{Binding Photo}" Margin="2"></Image>
+                </Frame>
+                <Label HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="{Binding FI}"></Label>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Button Text="Мои заказы" x:Name="BtnMyOrders" Clicked="BtnMyOrders_Clicked"></Button>
+                <Button Text="Поиск заказов" x:Name="BtnSearchOrders" Clicked="BtnSearchOrders_Clicked"></Button>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
