@@ -165,6 +165,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\OrderTypesController.cs" />
     <Compile Include="Controllers\RulesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\ResponseClient.cs" />
     <Compile Include="Models\ResponseCourier.cs" />
     <Compile Include="Models\ResponseOrder.cs" />
+    <Compile Include="Models\ResponseOrderType.cs" />
     <Compile Include="Models\ResponseRule.cs" />
     <Compile Include="Models\ResponseSchedule.cs" />
     <Compile Include="Models\ResponseUser.cs" />

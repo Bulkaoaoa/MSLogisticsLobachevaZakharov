@@ -17,14 +17,14 @@ namespace WebAppMsLogisctics.Controllers
         private EntitiesMsLog db = new EntitiesMsLog();
 
         // GET: api/Locations
-        [ResponseType(typeof(List<Location>))]
+        [ResponseType(typeof(List<Models.ResponceLocation>))]
         public IHttpActionResult GetLocation()
         {
-            return Ok(db.Location.ToList());
+            return Ok(db.Location.ToList().ConvertAll(p=> new Models.ResponceLocation(p)).ToList());
         }
 
         // GET: api/Locations/5
-        [ResponseType(typeof(Location))]
+        [ResponseType(typeof(Models.ResponceLocation))]
         public IHttpActionResult GetLocation(int id)
         {
             Location location = db.Location.Find(id);
@@ -33,7 +33,7 @@ namespace WebAppMsLogisctics.Controllers
                 return NotFound();
             }
 
-            return Ok(location);
+            return Ok(new Models.ResponceLocation(location));
         }
 
         // PUT: api/Locations/5
@@ -75,9 +75,7 @@ namespace WebAppMsLogisctics.Controllers
         [ResponseType(typeof(Location))]
         public IHttpActionResult PostLocation(Location location)
         {
-            //Бесползено
-            if (db.Location.ToList().Where(p => p.Address.ToLower().Trim() == location.Address.ToLower().Trim()).FirstOrDefault() != null)
-                ModelState.AddModelError("Address", "We are already this location");
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
