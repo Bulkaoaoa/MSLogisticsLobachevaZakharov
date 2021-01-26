@@ -58,7 +58,7 @@ namespace WebAppMsLogisctics.Controllers
             return Ok(currList);
         }
 
-        [ResponseType(typeof(List<ResponseOrder>)), Route("api/GetCurrentCurierWorkedOrder")]
+        [ResponseType(typeof(List<ResponseOrder>)), Route("api/GetCurrentCourierWorkedOrder")]
         public IHttpActionResult GetCurrentCurierWorkedOrder(int courierId)
         {
             List<Order> currOrderList = db.Order.ToList().Where(p => p.CourierId == courierId && p.StatusId==4).ToList();
