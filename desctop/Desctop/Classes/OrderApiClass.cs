@@ -32,7 +32,6 @@ namespace Desctop.Classes
         public float OrderPrice { get; set; }
         public int StatusId { get; set; }
     }
-
     public class Rulesofstartlocation
     {
         public int Id { get; set; }
