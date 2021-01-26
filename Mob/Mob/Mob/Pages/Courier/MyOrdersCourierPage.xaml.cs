@@ -41,11 +41,11 @@ namespace Mob.Pages.Courier
                 var responseCourierOrders = await client.GetStringAsync($"http://mslogisticslz.somee.com/api/GetCurrentCourierWorkedOrder?courierId={AppData.CurrUser.Id}");
                 var listOfCouriersOrders = JsonConvert.DeserializeObject<List<Order>>(responseCourierOrders);
                 // может падать из-за пустых полей, проверять на HasValue?
-                LvMyOrders.ItemsSource = listOfCouriersOrders.ToList().OrderByDescending(p => p.DateOfDelivery).ToList();
+                LvMyOrders.ItemsSource = listOfCouriersOrders.ToList().OrderBy(p => p.DateOfDelivery).ToList();
             }
             catch
             {
-                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long);
+                Toast.MakeText(Android.App.Application.Context, "Произошла ошибка подключения, перезапустите приложение", ToastLength.Long).Show();
             }
             LvMyOrders.IsRefreshing = false;
 

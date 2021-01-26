@@ -4,6 +4,40 @@
              x:Class="Mob.Pages.Courier.FreeOrdersForCourierPage" Title="Свободные заказы">
     <ContentPage.Content>
         <StackLayout>
+            <ListView x:Name="LvMyOrders"  HasUnevenRows="True" SeparatorColor="{StaticResource MainGrayDarkest}"
+                          IsPullToRefreshEnabled="True"  RefreshControlColor="{StaticResource MainYellowDark}" Refreshing="LvMyOrders_Refreshing"
+                          HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem BackgroundColor="Green" Text="Взять" x:Name="SwipeItemAccomplished" Invoked="SwipeItemAccomplished_Invoked"></SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid HorizontalOptions="Start">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label FontSize="Large" FontAttributes="Bold" Text="{Binding Id, StringFormat='Заказ №{0}'}" HorizontalTextAlignment="Start"
+                                           LineBreakMode="WordWrap"></Label>
+                                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource MainYellow}">
+                                        <StackLayout>
+                                            <Label Margin="5,0,0,0" Text="{Binding ClientName, StringFormat='Имя клиента: {0}'}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"></Label>
+                                            <Label Margin="5,0,0,0" Text="{Binding StartLocationName, StringFormat='Заказ можно забрать по адресу: {0}'}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"></Label>
+                                            <Label Margin="5,0,0,0" Text="{Binding EndLocationName, StringFormat='Заказ нужно привезти по адресу: {0}'}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"></Label>
+                                            <Label Margin="5,0,0,0" Text="{Binding DateTimeOfDeliveryForCourier}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"></Label>
+                                            <Label Margin="5,0,0,0" Text="{Binding OrderPrice, StringFormat='Оплата заказа: {0}руб.'}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"></Label>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -29,7 +29,7 @@
                                     <SwipeView>
                                         <SwipeView.LeftItems>
                                             <SwipeItems>
-                                                <SwipeItem BackgroundColor="Red"  Text="Удалить" x:Name="LeftSwipeItem" Invoked="LeftSwipeItem_Invoked"></SwipeItem>
+                                                <SwipeItem BackgroundColor="Red"  Text="Отменить" x:Name="LeftSwipeItem" Invoked="LeftSwipeItem_Invoked"></SwipeItem>
                                             </SwipeItems>
                                         </SwipeView.LeftItems>
                                     <Grid BackgroundColor="{StaticResource MainGrayDark}" >
@@ -38,12 +38,12 @@
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition Height="auto"></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource MainGrayDarkest}">
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="White">
                                             <Label Text="Заказ № " Margin="5,5,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
                                             <Label Text="{Binding Id}" Margin="0,5,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
                                         </StackLayout>
-                                            <Label Grid.Row="1"  Margin="5,0,0,0" VerticalOptions="Center" TextColor="{StaticResource MainYellow}" Text="{Binding Comment}" LineBreakMode="WordWrap"></Label>
-                                        <Label Grid.Row="2" Margin="5,0,0,0" TextColor="{StaticResource MainYellow}" Text="{Binding DateTimeOfDeliveryForClient}" LineBreakMode="WordWrap"></Label>
+                                            <Label Grid.Row="1" FontSize="Medium"  Margin="5,0,0,0" VerticalOptions="Center" TextColor="{StaticResource MainYellow}" Text="{Binding Comment}" LineBreakMode="WordWrap"></Label>
+                                            <Label Grid.Row="2" FontSize="Medium" Margin="5,5,0,5" TextColor="White" Text="{Binding DateTimeOfDeliveryForClient}" LineBreakMode="WordWrap"></Label>
                                     </Grid>
                                     </SwipeView>
                                 </ViewCell>

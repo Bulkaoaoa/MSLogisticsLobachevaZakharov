@@ -56,7 +56,7 @@ namespace Mob.Pages.Client
                     var listOfMyOrders = JsonConvert.DeserializeObject<List<Order>>(task);
                     if (listOfMyOrders.Count == 0)
                     {
-                        //TODO: Надо будет сделать картинку для пустого списка заказов
+                        Toast.MakeText(Android.App.Application.Context, "У вас ещё нет ни одного заказа, нажимайте скорее вот эту желтую кнопку справа снизу ;)", ToastLength.Long);
                     }
                     else
                     {
