@@ -56,6 +56,8 @@ namespace WebAppMsLogisctics.Models
                 StatusId = order.StatusId;
                 DateOfDelivery = order.DateOfDelivery;
                 TimeOfDelivery = order.TimeOfDelivery;
+                OrderTypeId = order.OrderTypeId;
+                OrderTypeName = order.OrderType.Name;
 
             }
         }
@@ -119,6 +121,7 @@ namespace WebAppMsLogisctics.Models
         public Nullable<decimal> ClientRate { get; set; }
         public int ManagerId { get; set; }
         public int OrderTypeId { get; set; }
+        public string OrderTypeName { get; set; }
         public decimal OrderPrice { get; set; }
 
         public int StatusId { get; set; }
