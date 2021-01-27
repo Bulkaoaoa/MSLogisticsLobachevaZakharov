@@ -7,43 +7,45 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="20">
+        <Border BorderBrush="Black" BorderThickness="0 0 0 1">
+            <StackPanel>
+                <Grid>
+                    <TextBlock TextWrapping="Wrap" FontSize="20">
                 <Run>Из</Run>
-                <Run Text="{Binding StartLocationName}"></Run>
+                <Run FontWeight="Bold" Text="{Binding StartLocationName}"></Run>
                 <Run>До</Run>
-                <Run Text="{Binding EndLocationName}"></Run>
-                </TextBlock>
-            </Grid>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold" FontSize="20">Имя Клиента:</TextBlock>
-                <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding ClientName}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold">Тип:</TextBlock>
-                <TextBlock TextWrapping="Wrap" Text="{Binding TypeName}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold">Код для получения:</TextBlock>
-                <TextBlock TextWrapping="Wrap" Text="{Binding Code}"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold">Время доставки:</TextBlock>
-                <TextBlock TextWrapping="Wrap" Text="{Binding DateTimeOfDeliveryForCourier}"></TextBlock>
-            </StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontWeight="Bold"><Run Text="Комментарий:"/></TextBlock>
-                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Comment}"></TextBlock>
-            </Grid>
-            <StackPanel Orientation="Horizontal">
+                <Run FontWeight="Bold" Text="{Binding EndLocationName}"></Run>
+                    </TextBlock>
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" FontSize="20">Имя Клиента:</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="20" Text="{Binding ClientName}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold">Тип:</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderTypeName}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold">Код для получения:</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Code}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold">Время доставки:</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DateTimeOfDeliveryForCourier}"></TextBlock>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontWeight="Bold"><Run Text="Комментарий:"/></TextBlock>
+                    <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Comment}"></TextBlock>
+                </Grid>
+                <!--<StackPanel Orientation="Horizontal">
                 <TextBlock FontWeight="Bold">Телефон клиента:</TextBlock>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Client.User.Telephone}"></TextBlock>
+            </StackPanel>-->
             </StackPanel>
-        </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

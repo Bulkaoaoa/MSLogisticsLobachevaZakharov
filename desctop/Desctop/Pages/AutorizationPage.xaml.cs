@@ -44,12 +44,20 @@ namespace Desctop.Pages
             User user = userList.FirstOrDefault(p => p.Login == TbLogin.Text && p.Password == PbPassword.Password);
             if (user != null)
             {
+                if (ChBRemember.IsChecked == true)
+                {
+                    Properties.Settings.Default.Login = user.Login;
+                    Properties.Settings.Default.Save();
+                    Properties.Settings.Default.Password = user.Password;
+                    Properties.Settings.Default.Save();
+                }
                 switch (user.RoleId)
                 {
                     case 1:
                         MessageBox.Show("Для клиента используйте мобильное приложение", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         break;
                     case 2:
+                        AppData.Manager = AppData.Context.Manager.ToList().FirstOrDefault(predicate => predicate.User.Id == user.Id);
                         AppData.MainFrame.Navigate(new ManagerPage());
                         break;
                     case 3:

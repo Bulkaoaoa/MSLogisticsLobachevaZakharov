@@ -35,3 +35,8 @@ C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\bin\Deb
 C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\bin\Debug\Newtonsoft.Json.xml
 C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\obj\Debug\Controls\CourierOrderControl.g.cs
 C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\obj\Debug\Controls\CourierOrderControl.baml
+C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\bin\Debug\Desctop.exe.manifest
+C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\bin\Debug\Desctop.application
+C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\obj\Debug\Desctop.TrustInfo.xml
+C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\obj\Debug\Desctop.exe.manifest
+C:\Users\danil\Source\Repos\MSLogisticsLobachevaZakharov\desctop\Desctop\obj\Debug\Desctop.application

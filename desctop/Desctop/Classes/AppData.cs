@@ -13,5 +13,6 @@ namespace Desctop.Classes
     {
         public static Frame MainFrame;
         public static LogEntities Context = new LogEntities();
+        public static Manager Manager;
     }
 }

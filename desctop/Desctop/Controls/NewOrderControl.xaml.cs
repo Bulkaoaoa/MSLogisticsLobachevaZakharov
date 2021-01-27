@@ -41,6 +41,7 @@ namespace Desctop.Controls
             {
                 var order = AppData.Context.Order.ToList().FirstOrDefault(p => p.Id == ((sender as Button).DataContext as OrderApi).Id);
                 order.StatusId = 2;
+                order.ManagerId = AppData.Manager.Id;
                 AppData.Context.SaveChangesAsync();
             }
             MainStack.Visibility = Visibility.Collapsed;

@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desctop"
         mc:Ignorable="d"
-        Title="" Height="600" Width="1000" MinHeight="600" MinWidth="1000">
+        Title="" Height="600" Width="1000" MinHeight="600" MinWidth="1000" Icon="Resources/mainlogo.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource MainGray}">
-            <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="40">MsLogistic</TextBlock>
-            <Button Click="BtnBack_Click" x:Name="BtnBack" HorizontalAlignment="Left" Width="150" Content="← Назад" Margin="15"></Button>
+        <Grid Background="{StaticResource MainYellow}">
+            <TextBlock HorizontalAlignment="Center" Foreground="Black" FontSize="40">MsLogistic</TextBlock>
+            <Button Visibility="Collapsed" Background="{StaticResource MainGray}" Foreground="White" Click="BtnBack_Click" x:Name="BtnBack" HorizontalAlignment="Left" Width="150" Content="Выйти" Margin="15"></Button>
+            <Image HorizontalAlignment="Right" Source="Resources/mainlogo.png" Height="60" Margin="5" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </Grid>
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="3">
             <Frame ContentRendered="MainFrame_ContentRendered" Grid.Row="1" NavigationUIVisibility="Hidden" Name="MainFrame"></Frame>

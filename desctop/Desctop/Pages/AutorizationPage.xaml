@@ -19,7 +19,8 @@
                 <TextBlock>Пароль</TextBlock>
                 <PasswordBox x:Name="PbPassword" Width="150"></PasswordBox>
             </StackPanel>
-            <Button IsDefault="True" Click="BtnLogin_Click" x:Name="BtnLogin">Войти</Button>
+            <CheckBox x:Name="ChBRemember" Margin="5">Запомнить меня</CheckBox>
+            <Button Background="{StaticResource MainGray}" Foreground="White" IsDefault="True" Click="BtnLogin_Click" x:Name="BtnLogin">Войти</Button>
         </StackPanel>
     </Grid>
 </Page>

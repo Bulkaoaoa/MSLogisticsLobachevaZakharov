@@ -26,7 +26,25 @@ namespace Desctop
         {
             InitializeComponent();
             AppData.MainFrame = MainFrame;
-            AppData.MainFrame.Navigate(new AutorizationPage());
+            try
+            {
+                Entities.User user = AppData.Context.User.ToList().FirstOrDefault(p => p.Login == Properties.Settings.Default.Login
+                               && p.Password == Properties.Settings.Default.Password);
+                if (user != null)
+                {
+                    AppData.Manager = AppData.Context.Manager.ToList().FirstOrDefault(p => p.User.Id == user.Id);
+                    AppData.MainFrame.Navigate(new ManagerPage());
+                }
+                else
+                {
+                    AppData.MainFrame.Navigate(new AutorizationPage());
+                }
+            }
+            catch (Exception ex)
+            {
+                AppData.MainFrame.Navigate(new AutorizationPage());
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
@@ -47,8 +65,13 @@ namespace Desctop
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (AppData.MainFrame.CanGoBack)
-                AppData.MainFrame.GoBack();
+            if (MessageBox.Show("Выйти из аккаунта?", "Выйти?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Properties.Settings.Default.Login = "";
+                Properties.Settings.Default.Password = "";
+                Properties.Settings.Default.Save();
+            }
+            AppData.MainFrame.Navigate(new AutorizationPage());
         }
     }
 }

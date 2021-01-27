@@ -10,8 +10,16 @@
       Title="Страница менеджера">
 
     <Grid>
-        <TabControl>
-            <TabItem Header="Ожидание выполнения">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" FontSize="15">Тип выводимых закзов:</TextBlock>
+            <ComboBox SelectionChanged="CbType_SelectionChanged" DisplayMemberPath="Name" Name="CbType" Margin="5" Width="200"></ComboBox>
+        </StackPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Name="TI1" Header="Ожидание выполнения">
                 <ScrollViewer>
                     <StackPanel>
                         <Button x:Name="BtnUpdateNewOrder" IsEnabled="False" Click="BtnUpdateNewOrder_Click" HorizontalAlignment="Right" Margin="5">Новые заказы (0)</Button>
@@ -25,15 +33,15 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Отправлены на комплектацию">
+            <TabItem Name="TI2" Header="Отправлены на комплектацию">
                 <ScrollViewer>
-                        <ItemsControl x:Name="IcComplectationOrder">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <control:ComplectationOrderControl></control:ComplectationOrderControl>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                    <ItemsControl x:Name="IcComplectationOrder">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <control:ComplectationOrderControl></control:ComplectationOrderControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
             </TabItem>
             <TabItem Name="TI3" Header="Заказы у курьера">
@@ -41,7 +49,7 @@
                     <ItemsControl x:Name="IcCourierOrder">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <control:NewOrderControl></control:NewOrderControl>
+                                <control:CourierOrderControl></control:CourierOrderControl>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -49,6 +57,6 @@
             </TabItem>
             <!--<TabItem Header="Выполненные заказы"></TabItem>-->
         </TabControl>
-
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" FontSize="50" Name="TbxDataLoaded">Данные загружаются...</TextBlock>
     </Grid>
 </Page>

@@ -25,8 +25,15 @@ namespace Desctop.Windows
         public NotBusyCourierWindow(OrderApi order)
         {
             InitializeComponent();
-            CbCouriers.ItemsSource = AppData.Context.Courier.ToList().Where(p => p.Order.ToList().Where(i => i.OrderStatus.Id == 4 && (i.DateOfDelivery == DateTime.Now.Date && i.TimeOfDelivery == DateTime.Now.TimeOfDay- new TimeSpan(1,0,0))).ToList().Count() == 0).ToList();
-            orderSQL = AppData.Context.Order.ToList().FirstOrDefault(p => p.Id == order.Id);
+            try
+            {
+                CbCouriers.ItemsSource = AppData.Context.Courier.ToList().Where(p => p.Order.ToList().Where(i => i.OrderStatus.Id == 4 && (i.DateOfDelivery == DateTime.Now.Date && i.TimeOfDelivery == DateTime.Now.TimeOfDay - new TimeSpan(1, 0, 0))).ToList().Count() == 0).ToList();
+                orderSQL = AppData.Context.Order.ToList().FirstOrDefault(p => p.Id == order.Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -36,9 +43,17 @@ namespace Desctop.Windows
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
-            orderSQL.StatusId = 4;
-            orderSQL.Courier = (CbCouriers.SelectedItem as Courier);
-            AppData.Context.SaveChanges();
+            try
+            {
+                orderSQL.StatusId = 4;
+                orderSQL.Courier = (CbCouriers.SelectedItem as Courier);
+                orderSQL.ManagerId = AppData.Manager.Id;
+                AppData.Context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Close();
         }
     }
